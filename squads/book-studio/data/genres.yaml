@@ -1,0 +1,178 @@
+# Catalogo de Generos — Book Studio
+# Referencia para classificacao e adaptacao de workflows
+
+fiction:
+  romance:
+    label: Romance
+    description: Narrativa longa com arco completo
+    word_count: "60.000-120.000"
+    structure: three-act
+    subgenres:
+      - romance-literario
+      - romance-historico
+      - romance-policial
+      - romance-de-formacao
+
+  conto:
+    label: Conto
+    description: Narrativa curta com unidade de efeito
+    word_count: "1.000-15.000"
+    structure: single-effect
+    subgenres:
+      - conto-realista
+      - conto-fantastico
+      - microconto
+      - cronica
+
+  novela:
+    label: Novela
+    description: Narrativa de extensao media
+    word_count: "15.000-60.000"
+    structure: three-act
+
+  poesia:
+    label: Poesia
+    description: Expressao em verso ou prosa poetica
+    word_count: "varies"
+    structure: collection
+    forms:
+      - soneto
+      - haiku
+      - verso-livre
+      - prosa-poetica
+      - cordel
+
+  fantasia:
+    label: Fantasia
+    description: Mundos com elementos magicos ou sobrenaturais
+    word_count: "80.000-150.000"
+    structure: hero-journey
+    requires: worldbuilding
+    subgenres:
+      - high-fantasy
+      - urban-fantasy
+      - dark-fantasy
+      - fantasia-brasileira
+
+  ficcao-cientifica:
+    label: Ficcao Cientifica
+    description: Especulacao sobre ciencia e tecnologia
+    word_count: "70.000-120.000"
+    structure: three-act
+    requires: worldbuilding
+    subgenres:
+      - hard-sf
+      - space-opera
+      - cyberpunk
+      - distopia
+
+  terror:
+    label: Terror/Horror
+    description: Provocar medo e tensao
+    word_count: "60.000-100.000"
+    structure: three-act
+    subgenres:
+      - horror-cosmico
+      - horror-psicologico
+      - slasher
+      - folk-horror
+
+  suspense:
+    label: Suspense/Thriller
+    description: Tensao e ritmo acelerado
+    word_count: "70.000-100.000"
+    structure: save-the-cat
+    subgenres:
+      - thriller-psicologico
+      - thriller-policial
+      - espionagem
+      - legal-thriller
+
+  infantil:
+    label: Infantil
+    description: Para criancas (varios subgrupos etarios)
+    word_count: "varies"
+    structure: simple-arc
+    age_groups:
+      - "0-3": "500-1.000 palavras, muitas ilustracoes"
+      - "4-7": "1.000-5.000 palavras, ilustracoes"
+      - "8-12": "10.000-40.000 palavras, poucas ilustracoes"
+
+  jovem-adulto:
+    label: Jovem Adulto (YA)
+    description: Para adolescentes (13-18)
+    word_count: "50.000-90.000"
+    structure: three-act
+
+  roteiro:
+    label: Roteiro
+    description: Script para cinema, TV ou teatro
+    word_count: "varies"
+    structure: three-act
+    format: screenplay
+
+nonfiction:
+  biografia:
+    label: Biografia/Autobiografia
+    description: Historia de vida real
+    word_count: "60.000-120.000"
+    structure: chronological
+    requires: research
+
+  autoajuda:
+    label: Autoajuda/Desenvolvimento Pessoal
+    description: Ferramentas para crescimento pessoal
+    word_count: "40.000-70.000"
+    structure: problem-solution
+
+  ensaio:
+    label: Ensaio
+    description: Reflexao argumentativa sobre um tema
+    word_count: "20.000-60.000"
+    structure: thematic
+
+  tecnico:
+    label: Tecnico
+    description: Livros sobre tecnologia, programacao, etc.
+    word_count: "40.000-100.000"
+    structure: tutorial-progressive
+    requires: research
+
+  academico:
+    label: Academico
+    description: Producao academica formal
+    word_count: "varies"
+    structure: scientific
+    requires: research
+
+  manual:
+    label: Manual/Guia
+    description: Instrucoes praticas passo-a-passo
+    word_count: "20.000-60.000"
+    structure: reference
+
+  jornalismo-literario:
+    label: Jornalismo Literario
+    description: Reportagem com tecnicas narrativas
+    word_count: "50.000-100.000"
+    structure: narrative
+    requires: research
+
+  historico:
+    label: Historia
+    description: Narrativa historica baseada em fatos
+    word_count: "60.000-120.000"
+    structure: chronological
+    requires: research
+
+  filosofia:
+    label: Filosofia
+    description: Reflexao filosofica estruturada
+    word_count: "40.000-80.000"
+    structure: thematic
+
+  negocios:
+    label: Negocios
+    description: Gestao, empreendedorismo, estrategia
+    word_count: "40.000-70.000"
+    structure: problem-solution

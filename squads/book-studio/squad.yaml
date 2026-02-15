@@ -1,0 +1,124 @@
+name: book-studio
+version: 1.0.0
+description: "Squad fullstack para escrita de livros de todos os generos — da ideacao a publicacao"
+author: Renato Aparecido Gomes
+license: MIT
+slashPrefix: book
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+pipeline:
+  type: etl
+  stages:
+    extract:
+      description: "Ideacao, pesquisa e concepcao"
+      agents: [muse, researcher]
+    transform:
+      description: "Estruturacao, escrita, revisao e critica"
+      agents: [architect, scribe, editor, critic]
+    load:
+      description: "Formatacao e distribuicao"
+      agents: [formatter, publisher]
+
+components:
+  agents:
+    - muse.md
+    - researcher.md
+    - architect.md
+    - scribe.md
+    - editor.md
+    - critic.md
+    - formatter.md
+    - publisher.md
+  tasks:
+    # Extract
+    - muse-brainstorm.md
+    - muse-character-design.md
+    - muse-premise.md
+    - researcher-investigate.md
+    - researcher-worldbuild.md
+    - researcher-fact-check.md
+    # Transform
+    - architect-outline.md
+    - architect-chapter-plan.md
+    - architect-timeline.md
+    - scribe-draft-chapter.md
+    - scribe-write-scene.md
+    - scribe-dialogue.md
+    - editor-copy-edit.md
+    - editor-structural-review.md
+    - editor-consistency-check.md
+    - critic-analysis.md
+    - critic-beta-read.md
+    # Load
+    - formatter-markdown.md
+    - formatter-epub.md
+    - formatter-cover-prompt.md
+    - publisher-metadata.md
+    - publisher-sinopse.md
+    - publisher-marketing.md
+  workflows:
+    - full-pipeline.md
+    - fiction-workflow.md
+    - nonfiction-workflow.md
+    - quick-draft.md
+  checklists:
+    - pre-writing.md
+    - revision.md
+    - publication.md
+  templates:
+    - book-proposal.md
+    - chapter-template.md
+    - character-sheet.md
+    - worldbuilding-bible.md
+    - book-metadata.md
+  tools: []
+  scripts: []
+
+config:
+  extends: extend
+  coding-standards: config/coding-standards.md
+  tech-stack: config/tech-stack.md
+  source-tree: config/source-tree.md
+
+dependencies:
+  node: []
+  python: []
+  squads: []
+
+genres:
+  fiction:
+    - romance
+    - conto
+    - novela
+    - poesia
+    - fantasia
+    - ficcao-cientifica
+    - terror
+    - suspense
+    - infantil
+    - jovem-adulto
+    - roteiro
+  nonfiction:
+    - biografia
+    - autoajuda
+    - ensaio
+    - tecnico
+    - academico
+    - manual
+    - jornalismo-literario
+    - historico
+    - filosofia
+    - negocios
+
+tags:
+  - writing
+  - books
+  - editorial
+  - publishing
+  - fiction
+  - nonfiction
+  - etl-pipeline
+  - fullstack
