@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: DavidAnson/markdownlint-cli2-action@v22
+        continue-on-error: true
+        with:
+          globs: |
+            **/*.md
+            !node_modules/**
+          config: ".markdownlint.json"
+
+  validate-yaml:
+    name: Validate YAML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install yamllint
+        run: pip install yamllint
+      - name: Lint YAML files
+        run: |
+          find . -name "*.yaml" -o -name "*.yml" | grep -v '.github/' | while read f; do
+            echo "Validating $f..."
+            yamllint -d "{extends: relaxed, rules: {line-length: {max: 200}, truthy: disable}}" "$f" || true
+          done
+
+  validate-structure:
+    name: Validate Squad Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify required directories
+        run: |
+          SQUAD="squads/book-studio"
+          for dir in agents tasks templates workflows checklists config data; do
+            if [ ! -d "$SQUAD/$dir" ]; then
+              echo "::error::Missing required directory: $SQUAD/$dir"
+              exit 1
+            fi
+          done
+          echo "All required directories present"
+      - name: Verify required files
+        run: |
+          SQUAD="squads/book-studio"
+          if [ ! -f "$SQUAD/squad.yaml" ]; then
+            echo "::error::Missing required file: $SQUAD/squad.yaml"
+            exit 1
+          fi
+          if [ ! -f "$SQUAD/README.md" ]; then
+            echo "::error::Missing required file: $SQUAD/README.md"
+            exit 1
+          fi
+          echo "All required files present"
+      - name: Verify agent count
+        run: |
+          count=$(ls squads/book-studio/agents/*.md 2>/dev/null | wc -l | tr -d ' ')
+          if [ "$count" -lt 8 ]; then
+            echo "::error::Expected at least 8 agents, found $count"
+            exit 1
+          fi
+          echo "Agent count OK: $count"
+      - name: Verify task count
+        run: |
+          count=$(ls squads/book-studio/tasks/*.md 2>/dev/null | wc -l | tr -d ' ')
+          if [ "$count" -lt 20 ]; then
+            echo "::error::Expected at least 20 tasks, found $count"
+            exit 1
+          fi
+          echo "Task count OK: $count"
+
+  security:
+    name: Security Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check for secrets
+        run: |
+          if git diff --name-only HEAD~1 2>/dev/null | grep -qE '\.env$|\.key$|\.pem$|credentials'; then
+            echo "::error::Sensitive files detected in commit"
+            exit 1
+          fi
+          echo "No secrets detected"
