@@ -1,0 +1,75 @@
+# Handoff: Muse → Architect
+# Entrega conceito criativo para estruturacao
+
+version: "1.0"
+schema: handoff
+source: muse
+target: architect
+description: "Muse entrega conceito validado para Architect estruturar o livro"
+
+required:
+  premise:
+    type: object
+    fields:
+      logline:
+        type: string
+        description: "Logline de 1-2 frases"
+      expanded:
+        type: string
+        description: "Premissa expandida (1 paragrafo)"
+      comp_titles:
+        type: list
+        description: "2-3 titulos comparaveis"
+
+  genre_config:
+    type: object
+    fields:
+      genre:
+        type: string
+        description: "Genero principal"
+      subgenre:
+        type: string
+        description: "Subgenero (se aplicavel)"
+      tone:
+        type: string
+        description: "Tom da obra"
+      target_audience:
+        type: string
+        description: "Publico-alvo primario"
+
+  characters:
+    type: list
+    item_type: character
+    min_items: 1
+    description: "Personagens principais com ficha basica"
+    item_fields:
+      name: { type: string, required: true }
+      role: { type: string, required: true }
+      motivation: { type: string, required: true }
+      fear: { type: string, required: false }
+      wound: { type: string, required: false }
+      arc: { type: string, required: false }
+      voice: { type: string, required: false }
+
+optional:
+  themes:
+    type: list
+    description: "Temas principais identificados"
+    item_fields:
+      name: { type: string }
+      type: { type: string }
+
+  world_seed:
+    type: string
+    description: "Semente de worldbuilding (se ficcao especulativa)"
+
+  structure_suggestion:
+    type: string
+    description: "Sugestao de modelo estrutural (3-act, hero-journey, etc.)"
+
+  word_count_target:
+    type: integer
+    description: "Meta de palavras sugerida"
+
+memory_updates:
+  writes: [meta, premissa, personagens, temas]

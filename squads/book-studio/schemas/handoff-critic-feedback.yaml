@@ -1,0 +1,68 @@
+# Handoff: Critic → qualquer agente
+# Feedback generico de avaliacao critica
+
+version: "1.0"
+schema: handoff
+source: critic
+target: any
+description: "Critic envia feedback de avaliacao para qualquer agente que precise ajustar"
+
+required:
+  scores:
+    type: object
+    description: "Avaliacao por dimensao (1-10)"
+    fields:
+      premissa: { type: integer, range: [1, 10] }
+      estrutura: { type: integer, range: [1, 10] }
+      personagens: { type: integer, range: [1, 10] }
+      prosa: { type: integer, range: [1, 10] }
+      dialogo: { type: integer, range: [1, 10] }
+      worldbuilding: { type: integer, range: [1, 10] }
+      tema: { type: integer, range: [1, 10] }
+      engajamento: { type: integer, range: [1, 10] }
+      mercado: { type: integer, range: [1, 10] }
+      overall: { type: integer, range: [1, 10] }
+
+  strengths:
+    type: list
+    description: "Pontos fortes do manuscrito"
+    item_fields:
+      aspect: { type: string, required: true }
+      example: { type: string, required: false }
+      impact: { type: string, required: false }
+
+  weaknesses:
+    type: list
+    description: "Pontos fracos com recomendacoes"
+    item_fields:
+      aspect: { type: string, required: true }
+      severity: { type: enum, values: [critical, moderate, minor], required: true }
+      example: { type: string, required: false }
+      recommendation: { type: string, required: true }
+
+optional:
+  target_agent:
+    type: string
+    description: "Agente especifico que deve receber o feedback"
+
+  reader_profile:
+    type: string
+    description: "Perfil de leitor usado na avaliacao"
+
+  dnf_risk:
+    type: list
+    description: "Risco de abandono por capitulo"
+    item_fields:
+      chapter: { type: integer }
+      risk: { type: enum, values: [low, medium, high] }
+      reason: { type: string }
+
+  market_assessment:
+    type: object
+    fields:
+      potential: { type: string }
+      positioning: { type: string }
+      comparables: { type: list }
+
+memory_updates:
+  writes: [feedback]

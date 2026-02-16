@@ -11,6 +11,8 @@ Saida: |
   - report: Relatorio de consistencia
   - issues: Inconsistencias encontradas
   - fixes: Correcoes sugeridas
+handoff_schema: schemas/handoff-editor-to-scribe.yaml
+memory_sections: [progresso, feedback]
 ---
 
 # *consistency-check

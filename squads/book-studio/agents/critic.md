@@ -52,6 +52,13 @@ collaboration:
   sends_to: [muse, architect, scribe, editor]
   receives_from: [editor, scribe]
   handoff: "Envia feedback para quem precisa ajustar — pode retroalimentar qualquer fase"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-critic-feedback.yaml
+    inbound:
+      - schemas/handoff-editor-to-critic.yaml
+  memory_reads: [meta, premissa, personagens, estrutura, progresso]
+  memory_writes: [feedback]
 ---
 
 # Critic — Literary Analysis & Feedback Agent

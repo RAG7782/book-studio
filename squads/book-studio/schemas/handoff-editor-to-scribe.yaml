@@ -1,0 +1,55 @@
+# Handoff: Editor → Scribe
+# Feedback loop — revisoes para reescrita
+
+version: "1.0"
+schema: handoff
+source: editor
+target: scribe
+description: "Editor devolve manuscrito com revisoes para Scribe ajustar"
+
+required:
+  changes_log:
+    type: list
+    description: "Lista de alteracoes necessarias"
+    item_fields:
+      location:
+        type: string
+        required: true
+        description: "Onde no texto (capitulo, pagina, paragrafo)"
+      type:
+        type: enum
+        values: [rewrite, cut, expand, restructure, clarify, fix]
+        required: true
+      description:
+        type: string
+        required: true
+        description: "O que precisa mudar e por que"
+      priority:
+        type: enum
+        values: [critical, important, suggestion]
+        required: true
+      example:
+        type: string
+        required: false
+        description: "Exemplo de como ficaria (sugestao)"
+
+  priority:
+    type: enum
+    values: [urgent, normal, low]
+    description: "Prioridade geral das revisoes"
+
+optional:
+  structural_notes:
+    type: string
+    description: "Notas sobre problemas estruturais macro"
+
+  voice_notes:
+    type: string
+    description: "Notas sobre consistencia de voz"
+
+  positive_feedback:
+    type: list
+    description: "O que esta funcionando bem (manter)"
+
+memory_updates:
+  writes: [feedback, progresso]

@@ -13,6 +13,8 @@ Saida: |
   - premise: Premissa expandida (1 paragrafo)
   - pitch: Pitch de elevador (30 segundos)
   - comparables: 2-3 titulos comparaveis
+handoff_schema: schemas/handoff-muse-to-architect.yaml
+memory_sections: [meta, premissa]
 ---
 
 # *premise

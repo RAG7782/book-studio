@@ -13,6 +13,8 @@ Saida: |
   - rules: Regras do mundo / sistema de magia
   - locations: Locais principais
   - cultures: Culturas e sociedades
+handoff_schema: schemas/handoff-researcher-to-architect.yaml
+memory_sections: [mundo, pesquisa]
 ---
 
 # *worldbuild

@@ -63,6 +63,13 @@ collaboration:
   sends_to: []
   receives_from: [formatter, muse]
   handoff: "Etapa final — livro pronto para o mundo"
+  handoff_schemas:
+    outbound: []
+    inbound:
+      - schemas/handoff-formatter-to-publisher.yaml
+      - schemas/handoff-muse-to-publisher.yaml
+  memory_reads: [meta, premissa, personagens]
+  memory_writes: [meta]
 ---
 
 # Publisher — Distribution & Marketing Agent

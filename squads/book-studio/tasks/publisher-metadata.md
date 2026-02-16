@@ -14,6 +14,8 @@ Saida: |
   - metadata: Metadados editoriais completos
   - keywords: Lista de keywords SEO
   - categories: Categorias BISAC/Amazon
+handoff_schema: schemas/handoff-muse-to-publisher.yaml
+memory_sections: [meta]
 ---
 
 # *metadata

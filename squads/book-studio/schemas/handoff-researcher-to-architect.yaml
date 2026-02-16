@@ -1,0 +1,59 @@
+# Handoff: Researcher → Architect
+# Entrega pesquisa compilada para estruturacao
+
+version: "1.0"
+schema: handoff
+source: researcher
+target: architect
+description: "Researcher entrega descobertas e biblia do mundo para Architect estruturar"
+
+required:
+  findings:
+    type: list
+    description: "Descobertas organizadas por tema"
+    item_fields:
+      topic: { type: string, required: true }
+      summary: { type: string, required: true }
+      details: { type: string, required: false }
+      reliability: { type: enum, values: [confirmed, likely, speculative] }
+
+  sources:
+    type: list
+    description: "Fontes verificadas"
+    item_fields:
+      title: { type: string, required: true }
+      author: { type: string, required: false }
+      type: { type: string, required: true }
+      verified: { type: boolean, required: true }
+
+optional:
+  world_bible:
+    type: object
+    description: "Biblia do mundo (ficcao)"
+    fields:
+      rules:
+        type: list
+        description: "Regras do universo"
+      locations:
+        type: list
+        description: "Locais importantes"
+      cultures:
+        type: list
+        description: "Culturas e sociedades"
+      history:
+        type: list
+        description: "Eventos historicos do mundo"
+
+  timeline_context:
+    type: list
+    description: "Eventos historicos reais relevantes"
+
+  terminology:
+    type: list
+    description: "Termos tecnicos ou especificos"
+    item_fields:
+      term: { type: string }
+      definition: { type: string }
+
+memory_updates:
+  writes: [pesquisa, mundo]

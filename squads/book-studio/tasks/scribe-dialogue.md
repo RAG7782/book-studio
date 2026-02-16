@@ -12,6 +12,8 @@ Entrada: |
 Saida: |
   - dialogue: Dialogo escrito com beats de acao
   - character_notes: Notas sobre voz de cada personagem
+handoff_schema: schemas/handoff-scribe-to-editor.yaml
+memory_sections: [progresso]
 ---
 
 # *dialogue

@@ -14,6 +14,8 @@ Saida: |
   - amazon_description: Descricao Amazon (até 4000 chars)
   - elevator_pitch: Pitch de 30 segundos
   - tagline: Frase de efeito (1 linha)
+handoff_schema: schemas/handoff-muse-to-publisher.yaml
+memory_sections: [meta]
 ---
 
 # *sinopse

@@ -1,0 +1,63 @@
+# Handoff: Architect → Scribe
+# Entrega estrutura completa para escrita
+
+version: "1.0"
+schema: handoff
+source: architect
+target: scribe
+description: "Architect entrega outline estruturado para Scribe executar capitulo a capitulo"
+
+required:
+  outline:
+    type: list
+    description: "Outline completo com capitulos"
+    item_fields:
+      number: { type: integer, required: true }
+      title: { type: string, required: true }
+      pov: { type: string, required: false }
+      objective: { type: string, required: true }
+      beats: { type: list, required: true }
+      hook: { type: string, description: "Gancho final do capitulo" }
+      tension: { type: integer, range: [1, 10] }
+      word_target: { type: integer }
+
+  voice_profile:
+    type: object
+    description: "Perfil de voz para o livro"
+    fields:
+      style: { type: string, required: true, description: "Estilo de prosa" }
+      pov_type: { type: string, required: true, description: "1a pessoa, 3a limitada, etc." }
+      tense: { type: string, required: true, description: "Tempo verbal dominante" }
+      tone: { type: string, required: true }
+      vocabulary_level: { type: string }
+
+optional:
+  chapter_plan:
+    type: object
+    description: "Plano detalhado do capitulo atual (se aplicavel)"
+    fields:
+      scenes:
+        type: list
+        item_fields:
+          location: { type: string }
+          characters: { type: list }
+          objective: { type: string }
+          conflict: { type: string }
+          change: { type: string }
+          mood: { type: string }
+          word_estimate: { type: integer }
+
+  pacing_map:
+    type: list
+    description: "Mapa de tensao por capitulo"
+    item_fields:
+      chapter: { type: integer }
+      tension: { type: integer }
+      type: { type: string, description: "setup, rising, climax, falling, resolution" }
+
+  structure_model:
+    type: string
+    description: "Modelo estrutural usado (three-act, hero-journey, etc.)"
+
+memory_updates:
+  writes: [estrutura, timeline]

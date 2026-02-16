@@ -1,0 +1,200 @@
+# Entity Model — Book Studio
+# Define tipos de entidade e relacoes do dominio editorial
+
+version: "1.0"
+schema: entity-model
+
+entities:
+  book:
+    description: "Projeto de livro como um todo"
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: genre
+        type: string
+        required: true
+      - name: subgenre
+        type: string
+        required: false
+      - name: status
+        type: enum
+        values: [ideacao, pesquisa, estruturacao, escrita, revisao, formatacao, publicacao]
+        required: true
+      - name: word_count_target
+        type: integer
+        required: false
+      - name: target_audience
+        type: string
+        required: true
+      - name: tone
+        type: string
+        required: false
+      - name: language
+        type: string
+        default: "pt-BR"
+
+  character:
+    description: "Personagem do livro (ficcao)"
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: role
+        type: enum
+        values: [protagonista, antagonista, secundario, terciario, narrador]
+        required: true
+      - name: motivation
+        type: string
+        required: true
+        description: "O que o personagem quer"
+      - name: fear
+        type: string
+        required: false
+        description: "O que o personagem evita"
+      - name: wound
+        type: string
+        required: false
+        description: "Ferida emocional formadora"
+      - name: arc
+        type: string
+        required: false
+        description: "Transformacao ao longo da historia"
+      - name: voice
+        type: string
+        required: false
+        description: "Vocabulario, maneirismos, tom"
+
+  location:
+    description: "Local ou cenario"
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: type
+        type: enum
+        values: [real, ficcional, historico, fantastico]
+        required: true
+      - name: description
+        type: string
+        required: true
+      - name: significance
+        type: string
+        required: false
+        description: "Importancia narrativa do local"
+
+  chapter:
+    description: "Capitulo do livro"
+    fields:
+      - name: number
+        type: integer
+        required: true
+      - name: title
+        type: string
+        required: true
+      - name: pov
+        type: string
+        required: false
+        description: "Ponto de vista / narrador"
+      - name: beats
+        type: list
+        required: true
+        description: "Momentos-chave do capitulo"
+      - name: tension
+        type: integer
+        range: [1, 10]
+        required: false
+      - name: status
+        type: enum
+        values: [planejado, rascunho, revisado, finalizado]
+        required: true
+      - name: word_count
+        type: integer
+        required: false
+
+  theme:
+    description: "Tema ou motivo recorrente"
+    fields:
+      - name: name
+        type: string
+        required: true
+      - name: type
+        type: enum
+        values: [principal, secundario, subtema, motivo]
+        required: true
+      - name: chapters
+        type: list
+        required: false
+        description: "Capitulos onde o tema aparece"
+
+  source:
+    description: "Fonte de pesquisa ou referencia"
+    fields:
+      - name: title
+        type: string
+        required: true
+      - name: author
+        type: string
+        required: false
+      - name: type
+        type: enum
+        values: [livro, artigo, website, entrevista, documento, academico]
+        required: true
+      - name: verified
+        type: boolean
+        default: false
+
+  timeline_event:
+    description: "Evento na timeline da historia"
+    fields:
+      - name: date_label
+        type: string
+        required: true
+        description: "Data ou periodo (flexivel: '1920', 'Cap 3', 'Dia 5')"
+      - name: event
+        type: string
+        required: true
+      - name: characters
+        type: list
+        required: false
+      - name: impact
+        type: string
+        required: false
+        description: "Consequencia do evento na trama"
+
+  world_rule:
+    description: "Regra do universo ficcional"
+    fields:
+      - name: category
+        type: enum
+        values: [fisica, magia, tecnologia, social, politica, economica, biologica]
+        required: true
+      - name: description
+        type: string
+        required: true
+      - name: constraints
+        type: list
+        required: false
+        description: "Limitacoes e excecoes da regra"
+
+relations:
+  - name: part_of
+    description: "Entidade faz parte de outra (capitulo part_of livro)"
+  - name: relates_to
+    description: "Relacao generica entre entidades"
+  - name: appears_in
+    description: "Personagem ou local aparece em capitulo"
+  - name: interacts_with
+    description: "Personagem interage com outro"
+  - name: transforms_to
+    description: "Personagem se transforma (arco)"
+  - name: conflicts_with
+    description: "Conflito entre entidades"
+  - name: located_in
+    description: "Entidade esta em um local"
+  - name: references
+    description: "Fonte referencia um fato"
+  - name: precedes
+    description: "Evento precede outro na timeline"
+  - name: foreshadows
+    description: "Elemento prefigura evento futuro"

@@ -1,0 +1,44 @@
+# Handoff: Editor → Critic
+# Manuscrito revisado para avaliacao critica
+
+version: "1.0"
+schema: handoff
+source: editor
+target: critic
+description: "Editor envia manuscrito revisado para Critic avaliar qualidade geral"
+
+required:
+  manuscript:
+    type: string
+    format: markdown
+    description: "Manuscrito revisado completo ou parcial"
+
+  revision_status:
+    type: object
+    fields:
+      level:
+        type: enum
+        values: [first_draft, revised, polished, final]
+        description: "Nivel de revisao aplicado"
+      passes_completed:
+        type: list
+        description: "Tipos de revisao ja feitos"
+
+optional:
+  editor_notes:
+    type: string
+    description: "Notas do Editor sobre areas de preocupacao"
+
+  focus_request:
+    type: list
+    description: "Areas especificas onde o Editor quer feedback do Critic"
+
+  known_issues:
+    type: list
+    description: "Problemas conhecidos que o Editor ja identificou"
+    item_fields:
+      issue: { type: string }
+      status: { type: enum, values: [fixed, in_progress, deferred] }
+
+memory_updates:
+  writes: [progresso]

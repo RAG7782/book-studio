@@ -61,6 +61,14 @@ collaboration:
   sends_to: [architect, scribe]
   receives_from: [muse, editor]
   handoff: "Entrega pesquisa compilada para Architect e Scribe usarem na escrita"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-researcher-to-architect.yaml
+      - schemas/handoff-researcher-to-scribe.yaml
+    inbound:
+      - schemas/handoff-muse-to-researcher.yaml
+  memory_reads: [meta, premissa]
+  memory_writes: [pesquisa, mundo]
 ---
 
 # Researcher — Research & Worldbuilding Agent

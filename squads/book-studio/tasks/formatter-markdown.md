@@ -9,6 +9,8 @@ Entrada: |
 Saida: |
   - formatted: Manuscrito em Markdown estruturado
   - toc: Table of Contents gerada
+handoff_schema: schemas/handoff-formatter-to-publisher.yaml
+memory_sections: [progresso]
 ---
 
 # *markdown

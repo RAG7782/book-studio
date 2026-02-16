@@ -11,6 +11,8 @@ Saida: |
   - review: Analise estrutural completa
   - issues: Problemas identificados
   - suggestions: Sugestoes de reestruturacao
+handoff_schema: schemas/handoff-editor-to-critic.yaml
+memory_sections: [progresso, feedback]
 ---
 
 # *structural-review

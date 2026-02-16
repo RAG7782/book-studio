@@ -12,6 +12,8 @@ Saida: |
   - ideas: Lista de 5-10 ideias com titulo provisorio
   - top_3: Top 3 mais promissoras com justificativa
   - selected: Ideia escolhida pelo autor para desenvolver
+handoff_schema: schemas/handoff-muse-to-architect.yaml
+memory_sections: [meta, premissa]
 ---
 
 # *brainstorm

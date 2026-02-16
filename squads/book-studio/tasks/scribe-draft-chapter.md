@@ -12,6 +12,8 @@ Saida: |
   - draft: Rascunho completo do capitulo em prosa
   - word_count: Contagem de palavras
   - notes: Notas para o Editor sobre decisoes tomadas
+handoff_schema: schemas/handoff-scribe-to-editor.yaml
+memory_sections: [progresso]
 ---
 
 # *draft-chapter

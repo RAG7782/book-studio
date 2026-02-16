@@ -12,6 +12,8 @@ Saida: |
   - character_sheet: Ficha completa do personagem
   - arc: Arco de transformacao
   - relationships: Mapa de relacionamentos
+handoff_schema: schemas/handoff-muse-to-architect.yaml
+memory_sections: [meta, personagens]
 ---
 
 # *character

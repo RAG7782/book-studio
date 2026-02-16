@@ -4,48 +4,68 @@
 book-studio/
 ├── squads/
 │   └── book-studio/
-│       ├── squad.yaml              # Manifest do squad
-│       ├── README.md               # Documentacao
+│       ├── squad.yaml
+│       ├── README.md
 │       ├── config/
-│       │   ├── coding-standards.md # Padroes de escrita
-│       │   ├── tech-stack.md       # Tecnologias utilizadas
-│       │   └── source-tree.md      # Este arquivo
+│       │   ├── coding-standards.md
+│       │   ├── tech-stack.md
+│       │   └── source-tree.md
 │       ├── agents/                 # 8 agentes
-│       │   ├── muse.md             # Ideacao & Conceito
-│       │   ├── researcher.md       # Pesquisa & Worldbuilding
-│       │   ├── architect.md        # Estrutura & Outline
-│       │   ├── scribe.md           # Escrita & Rascunhos
-│       │   ├── editor.md           # Revisao & Edicao
-│       │   ├── critic.md           # Analise & Feedback
-│       │   ├── formatter.md        # Producao (EPUB/PDF)
-│       │   └── publisher.md        # Distribuicao & Marketing
-│       ├── tasks/                  # ~23 tasks
-│       │   ├── muse-*.md           # Tasks de ideacao
-│       │   ├── researcher-*.md     # Tasks de pesquisa
-│       │   ├── architect-*.md      # Tasks de estrutura
-│       │   ├── scribe-*.md         # Tasks de escrita
-│       │   ├── editor-*.md         # Tasks de revisao
-│       │   ├── critic-*.md         # Tasks de analise
-│       │   ├── formatter-*.md      # Tasks de formatacao
-│       │   └── publisher-*.md      # Tasks de publicacao
-│       ├── workflows/              # 4 workflows
-│       │   ├── full-pipeline.md    # Pipeline completo E2E
-│       │   ├── fiction-workflow.md  # Especializado ficcao
-│       │   ├── nonfiction-workflow.md # Especializado nao-ficcao
-│       │   └── quick-draft.md      # Rascunho rapido
-│       ├── templates/              # 5 templates
-│       │   ├── book-proposal.md    # Proposta editorial
-│       │   ├── chapter-template.md # Template de capitulo
-│       │   ├── character-sheet.md  # Ficha de personagem
-│       │   ├── worldbuilding-bible.md # Biblia do mundo
-│       │   └── book-metadata.md    # Metadados editoriais
-│       ├── checklists/             # 3 checklists
-│       │   ├── pre-writing.md      # Antes de escrever
-│       │   ├── revision.md         # Antes de formatar
-│       │   └── publication.md      # Antes de publicar
+│       │   ├── muse.md
+│       │   ├── researcher.md
+│       │   ├── architect.md
+│       │   ├── scribe.md
+│       │   ├── editor.md
+│       │   ├── critic.md
+│       │   ├── formatter.md
+│       │   └── publisher.md
+│       ├── tasks/                  # 23 tasks
+│       │   ├── muse-*.md
+│       │   ├── researcher-*.md
+│       │   ├── architect-*.md
+│       │   ├── scribe-*.md
+│       │   ├── editor-*.md
+│       │   ├── critic-*.md
+│       │   ├── formatter-*.md
+│       │   └── publisher-*.md
+│       ├── schemas/                # 14 schemas (NOVO)
+│       │   ├── entity-model.yaml
+│       │   ├── handoff-muse-to-architect.yaml
+│       │   ├── handoff-muse-to-researcher.yaml
+│       │   ├── handoff-muse-to-publisher.yaml
+│       │   ├── handoff-researcher-to-architect.yaml
+│       │   ├── handoff-researcher-to-scribe.yaml
+│       │   ├── handoff-architect-to-scribe.yaml
+│       │   ├── handoff-scribe-to-editor.yaml
+│       │   ├── handoff-editor-to-scribe.yaml
+│       │   ├── handoff-editor-to-critic.yaml
+│       │   ├── handoff-editor-to-formatter.yaml
+│       │   ├── handoff-critic-feedback.yaml
+│       │   ├── handoff-formatter-to-publisher.yaml
+│       │   └── README.md
+│       ├── memory/                 # Memoria compartilhada (NOVO)
+│       │   ├── book-state-template.md
+│       │   └── README.md
+│       ├── workflows/
+│       │   ├── full-pipeline.md
+│       │   ├── fiction-workflow.md
+│       │   ├── nonfiction-workflow.md
+│       │   └── quick-draft.md
+│       ├── templates/
+│       │   ├── book-proposal.md
+│       │   ├── chapter-template.md
+│       │   ├── character-sheet.md
+│       │   ├── worldbuilding-bible.md
+│       │   ├── book-metadata.md
+│       │   └── handoff-output-template.md  # NOVO
+│       ├── checklists/
+│       │   ├── pre-writing.md
+│       │   ├── revision.md
+│       │   └── publication.md
 │       ├── tools/
 │       ├── scripts/
+│       │   └── validate-handoff.js  # NOVO
 │       └── data/
-│           └── genres.yaml         # Catalogo de generos
-└── manuscripts/                    # Projetos de livros (futuro)
+│           └── genres.yaml
+└── manuscripts/
 ```

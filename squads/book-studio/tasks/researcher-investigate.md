@@ -12,6 +12,8 @@ Saida: |
   - findings: Compilacao de descobertas organizadas
   - sources: Lista de fontes e referencias
   - recommendations: Sugestoes para o manuscrito
+handoff_schema: schemas/handoff-researcher-to-architect.yaml
+memory_sections: [pesquisa]
 ---
 
 # *investigate

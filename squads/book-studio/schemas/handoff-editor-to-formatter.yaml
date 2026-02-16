@@ -1,0 +1,56 @@
+# Handoff: Editor → Formatter
+# Manuscrito final para producao
+
+version: "1.0"
+schema: handoff
+source: editor
+target: formatter
+description: "Editor entrega manuscrito finalizado para Formatter produzir"
+
+required:
+  manuscript_final:
+    type: string
+    format: markdown
+    description: "Manuscrito revisado e aprovado, pronto para formatacao"
+
+  chapter_structure:
+    type: list
+    description: "Estrutura de capitulos do livro"
+    item_fields:
+      number: { type: integer, required: true }
+      title: { type: string, required: true }
+      word_count: { type: integer, required: false }
+
+optional:
+  front_matter:
+    type: object
+    description: "Material pre-textual"
+    fields:
+      dedication: { type: string }
+      epigraph: { type: string }
+      preface: { type: string }
+      acknowledgments: { type: string }
+
+  back_matter:
+    type: object
+    description: "Material pos-textual"
+    fields:
+      about_author: { type: string }
+      bibliography: { type: list }
+      glossary: { type: list }
+      appendices: { type: list }
+
+  formatting_notes:
+    type: list
+    description: "Instrucoes especiais de formatacao"
+    item_fields:
+      location: { type: string }
+      instruction: { type: string }
+
+  style_preference:
+    type: enum
+    values: [classic, modern, minimal]
+    description: "Estilo visual preferido"
+
+memory_updates:
+  writes: [progresso]

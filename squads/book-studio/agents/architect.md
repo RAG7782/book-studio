@@ -61,6 +61,15 @@ collaboration:
   sends_to: [scribe]
   receives_from: [muse, researcher, critic]
   handoff: "Entrega outline estruturado para Scribe executar capitulo a capitulo"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-architect-to-scribe.yaml
+    inbound:
+      - schemas/handoff-muse-to-architect.yaml
+      - schemas/handoff-researcher-to-architect.yaml
+      - schemas/handoff-critic-feedback.yaml
+  memory_reads: [meta, premissa, personagens, pesquisa, mundo]
+  memory_writes: [estrutura, timeline]
 ---
 
 # Architect — Structure & Outline Agent

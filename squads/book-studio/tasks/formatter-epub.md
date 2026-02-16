@@ -11,6 +11,8 @@ Saida: |
   - epub_structure: Estrutura de arquivos EPUB
   - css: Stylesheet para o EPUB
   - opf: Arquivo de metadados OPF
+handoff_schema: schemas/handoff-formatter-to-publisher.yaml
+memory_sections: [progresso]
 ---
 
 # *epub

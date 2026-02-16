@@ -11,6 +11,8 @@ Saida: |
   - report: Relatorio de verificacao
   - issues: Lista de problemas encontrados
   - corrections: Correcoes sugeridas
+handoff_schema: schemas/handoff-researcher-to-scribe.yaml
+memory_sections: [pesquisa]
 ---
 
 # *fact-check

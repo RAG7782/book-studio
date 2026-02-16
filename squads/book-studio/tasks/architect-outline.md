@@ -13,6 +13,8 @@ Saida: |
   - outline: Outline completo com capitulos e beats
   - structure: Modelo estrutural aplicado
   - pacing_map: Mapa de tensao/ritmo
+handoff_schema: schemas/handoff-architect-to-scribe.yaml
+memory_sections: [estrutura]
 ---
 
 # *outline

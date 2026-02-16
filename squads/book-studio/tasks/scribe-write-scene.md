@@ -11,6 +11,8 @@ Entrada: |
 Saida: |
   - scene: Cena escrita em prosa
   - word_count: Contagem de palavras
+handoff_schema: schemas/handoff-scribe-to-editor.yaml
+memory_sections: [progresso]
 ---
 
 # *write-scene

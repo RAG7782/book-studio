@@ -1,0 +1,46 @@
+# Handoff: Researcher → Scribe
+# Entrega material de referencia para escrita
+
+version: "1.0"
+schema: handoff
+source: researcher
+target: scribe
+description: "Researcher entrega notas de referencia e guia de terminologia para Scribe usar na escrita"
+
+required:
+  reference_notes:
+    type: list
+    description: "Notas de referencia organizadas por tema"
+    item_fields:
+      topic: { type: string, required: true }
+      notes: { type: string, required: true }
+      usage_guidance: { type: string, required: false, description: "Como usar na escrita" }
+
+optional:
+  terminology_guide:
+    type: list
+    description: "Guia de terminologia para consistencia"
+    item_fields:
+      term: { type: string, required: true }
+      definition: { type: string, required: true }
+      usage: { type: string, description: "Como usar no texto" }
+      avoid: { type: string, description: "Termos a evitar" }
+
+  period_details:
+    type: object
+    description: "Detalhes do periodo historico (se aplicavel)"
+    fields:
+      language_notes: { type: string, description: "Notas sobre linguagem da epoca" }
+      customs: { type: list, description: "Costumes relevantes" }
+      technology: { type: list, description: "Tecnologia disponivel" }
+
+  fact_sheet:
+    type: list
+    description: "Fatos verificados para uso na escrita"
+    item_fields:
+      fact: { type: string }
+      source: { type: string }
+      context: { type: string }
+
+memory_updates:
+  writes: [pesquisa]

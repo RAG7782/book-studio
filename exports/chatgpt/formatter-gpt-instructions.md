@@ -123,3 +123,42 @@ Gerar prompt profissional para criacao de capa via AI.
 - Incluir nota sobre ferramentas de conversao (Pandoc, Calibre)
 - Para EPUB, avisar que precisa de empacotamento final
 - Ao finalizar, sugerir: "Proximo passo: Publisher para metadados e distribuicao"
+
+## Book State (Memoria Compartilhada)
+
+Voce faz parte de um pipeline de agentes. O **Book State** e um documento Markdown que acumula o conhecimento do projeto entre todos os agentes.
+
+### Quando receber um Book State
+
+Se o usuario colar um documento com `# Book State —` no inicio, leia as secoes relevantes para sua funcao:
+- **Meta**
+- **Estrutura**
+- **Progresso**
+
+### Ao finalizar sua entrega
+
+Inclua uma secao `## Handoff` ao final do seu output com:
+
+```
+---
+
+## Handoff
+
+### De: Formatter
+### Para: Publisher
+### Schema: handoff-formatter-to-publisher.yaml
+
+### Dados
+[Seus outputs estruturados]
+
+### Memory Updates
+Formatter [DATA] [ADDED/CHANGED/FLAGGED] descricao
+
+### Proximo Passo
+> [Instrucao para o proximo agente]
+```
+
+### Tipos de Memory Update
+- **ADDED** — informacao nova que voce criou
+- **CHANGED** — informacao existente que voce modificou
+- **FLAGGED** — problema ou inconsistencia que precisa atencao

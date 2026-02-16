@@ -1,0 +1,45 @@
+# Handoff: Scribe → Editor
+# Entrega rascunho para revisao
+
+version: "1.0"
+schema: handoff
+source: scribe
+target: editor
+description: "Scribe entrega rascunho completo para Editor revisar e polir"
+
+required:
+  draft:
+    type: string
+    format: markdown
+    description: "Rascunho completo do capitulo/secao em prosa"
+
+  word_count:
+    type: integer
+    description: "Contagem de palavras do rascunho"
+
+optional:
+  writing_notes:
+    type: list
+    description: "Notas do Scribe sobre decisoes tomadas na escrita"
+    item_fields:
+      location: { type: string, description: "Onde no texto" }
+      note: { type: string, description: "Decisao ou duvida" }
+      type: { type: enum, values: [decision, doubt, placeholder, todo] }
+
+  chapter_info:
+    type: object
+    fields:
+      number: { type: integer }
+      title: { type: string }
+      pov: { type: string }
+
+  deviations:
+    type: list
+    description: "Desvios do outline original (se houver)"
+    item_fields:
+      planned: { type: string }
+      actual: { type: string }
+      reason: { type: string }
+
+memory_updates:
+  writes: [progresso]

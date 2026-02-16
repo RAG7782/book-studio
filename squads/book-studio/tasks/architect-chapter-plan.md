@@ -12,6 +12,8 @@ Saida: |
   - chapter_plan: Plano detalhado com beats expandidos
   - scenes: Lista de cenas com descricao
   - transitions: Pontos de transicao
+handoff_schema: schemas/handoff-architect-to-scribe.yaml
+memory_sections: [estrutura]
 ---
 
 # *chapter-plan

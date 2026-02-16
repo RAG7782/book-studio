@@ -14,6 +14,8 @@ Saida: |
   - email_copy: Email de lancamento
   - author_bio: Bio do autor (curta e longa)
   - media_kit: Kit para midia
+handoff_schema: schemas/handoff-muse-to-publisher.yaml
+memory_sections: [meta]
 ---
 
 # *marketing

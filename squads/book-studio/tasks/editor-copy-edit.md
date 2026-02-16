@@ -11,6 +11,8 @@ Saida: |
   - edited: Texto revisado
   - changes: Lista de alteracoes com justificativa
   - stats: Estatisticas (erros por tipo)
+handoff_schema: schemas/handoff-editor-to-scribe.yaml
+memory_sections: [progresso, feedback]
 ---
 
 # *copy-edit

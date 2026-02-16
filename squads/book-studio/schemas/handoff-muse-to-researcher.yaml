@@ -1,0 +1,54 @@
+# Handoff: Muse → Researcher
+# Entrega briefing criativo para pesquisa
+
+version: "1.0"
+schema: handoff
+source: muse
+target: researcher
+description: "Muse entrega conceito para Researcher aprofundar com pesquisa"
+
+required:
+  genre_config:
+    type: object
+    fields:
+      genre:
+        type: string
+        description: "Genero principal"
+      subgenre:
+        type: string
+        description: "Subgenero"
+      setting_period:
+        type: string
+        description: "Periodo/epoca da historia"
+
+  research_scope:
+    type: object
+    fields:
+      topics:
+        type: list
+        description: "Temas a pesquisar"
+      depth:
+        type: enum
+        values: [overview, moderate, deep]
+        description: "Profundidade da pesquisa"
+      focus_areas:
+        type: list
+        description: "Areas de foco especificas"
+
+optional:
+  premise:
+    type: object
+    fields:
+      logline: { type: string }
+      expanded: { type: string }
+
+  world_seed:
+    type: string
+    description: "Indicacoes de worldbuilding para orientar pesquisa"
+
+  constraints:
+    type: list
+    description: "Restricoes ou cuidados na pesquisa"
+
+memory_updates:
+  writes: [meta, premissa]

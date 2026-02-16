@@ -1,0 +1,50 @@
+# Handoff: Muse → Publisher
+# Entrega conceito para posicionamento de mercado
+
+version: "1.0"
+schema: handoff
+source: muse
+target: publisher
+description: "Muse entrega conceito para Publisher posicionar no mercado"
+
+required:
+  premise:
+    type: object
+    fields:
+      logline:
+        type: string
+        description: "Logline de 1-2 frases"
+      expanded:
+        type: string
+        description: "Premissa expandida"
+      comp_titles:
+        type: list
+        description: "Titulos comparaveis"
+
+  genre_config:
+    type: object
+    fields:
+      genre:
+        type: string
+      subgenre:
+        type: string
+      target_audience:
+        type: string
+      tone:
+        type: string
+
+optional:
+  characters:
+    type: list
+    description: "Personagens para material de marketing"
+
+  themes:
+    type: list
+    description: "Temas para posicionamento"
+
+  title_options:
+    type: list
+    description: "Opcoes de titulo em consideracao"
+
+memory_updates:
+  writes: [meta, premissa]

@@ -11,6 +11,8 @@ Entrada: |
 Saida: |
   - timeline: Timeline cronologica completa
   - arc_map: Mapeamento de arcos sobre a timeline
+handoff_schema: schemas/handoff-architect-to-scribe.yaml
+memory_sections: [timeline]
 ---
 
 # *timeline

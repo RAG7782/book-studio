@@ -14,6 +14,8 @@ Saida: |
   - weaknesses: Pontos fracos
   - score: Avaliacao por dimensao (1-10)
   - recommendations: Recomendacoes priorizadas
+handoff_schema: schemas/handoff-critic-feedback.yaml
+memory_sections: [feedback]
 ---
 
 # *analysis

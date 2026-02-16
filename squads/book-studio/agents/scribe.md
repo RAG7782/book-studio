@@ -56,8 +56,18 @@ commands:
 
 collaboration:
   sends_to: [editor]
-  receives_from: [architect, researcher, critic]
+  receives_from: [architect, researcher, editor, critic]
   handoff: "Entrega rascunho para Editor revisar e polir"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-scribe-to-editor.yaml
+    inbound:
+      - schemas/handoff-architect-to-scribe.yaml
+      - schemas/handoff-researcher-to-scribe.yaml
+      - schemas/handoff-editor-to-scribe.yaml
+      - schemas/handoff-critic-feedback.yaml
+  memory_reads: [meta, premissa, personagens, estrutura, pesquisa, timeline]
+  memory_writes: [progresso]
 ---
 
 # Scribe — Writing & Drafting Agent

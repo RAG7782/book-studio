@@ -1,0 +1,62 @@
+# Handoff: Formatter → Publisher
+# Livro formatado para distribuicao
+
+version: "1.0"
+schema: handoff
+source: formatter
+target: publisher
+description: "Formatter entrega livro formatado para Publisher preparar distribuicao"
+
+required:
+  formatted_files:
+    type: object
+    description: "Arquivos formatados por tipo"
+    fields:
+      markdown:
+        type: string
+        description: "Manuscrito fonte em Markdown estruturado"
+      epub_structure:
+        type: string
+        description: "Estrutura EPUB (se gerada)"
+        required: false
+      pdf_notes:
+        type: string
+        description: "Notas para geracao de PDF"
+        required: false
+
+  toc:
+    type: list
+    description: "Table of Contents final"
+    item_fields:
+      level: { type: integer, description: "Nivel de heading (1-3)" }
+      title: { type: string }
+      page_ref: { type: string, description: "Referencia de posicao" }
+
+optional:
+  cover_prompt:
+    type: object
+    description: "Prompt para geracao de capa"
+    fields:
+      main_prompt: { type: string }
+      variations: { type: list }
+      typography_notes: { type: string }
+      genre_style: { type: string }
+
+  front_matter:
+    type: list
+    description: "Paginas pre-textuais formatadas"
+
+  back_matter:
+    type: list
+    description: "Paginas pos-textuais formatadas"
+
+  technical_specs:
+    type: object
+    fields:
+      word_count: { type: integer }
+      page_count_estimate: { type: integer }
+      fonts_used: { type: list }
+      style: { type: string }
+
+memory_updates:
+  writes: [progresso]

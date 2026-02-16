@@ -12,6 +12,8 @@ Saida: |
   - report: Relatorio de beta reading
   - experience_log: Log de experiencia de leitura
   - dnf_risk: Risco de abandono por capitulo
+handoff_schema: schemas/handoff-critic-feedback.yaml
+memory_sections: [feedback]
 ---
 
 # *beta-read

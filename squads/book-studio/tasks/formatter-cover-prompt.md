@@ -13,6 +13,8 @@ Saida: |
   - prompt: Prompt detalhado para AI image generation
   - variations: 3 variacoes do prompt
   - typography_notes: Sugestoes de tipografia para titulo
+handoff_schema: schemas/handoff-formatter-to-publisher.yaml
+memory_sections: [progresso]
 ---
 
 # *cover-prompt

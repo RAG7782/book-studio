@@ -58,9 +58,18 @@ commands:
     task: muse-premise.md
 
 collaboration:
-  sends_to: [architect, researcher]
+  sends_to: [architect, researcher, publisher]
   receives_from: [critic]
   handoff: "Entrega conceito validado para Architect estruturar e Researcher aprofundar"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-muse-to-architect.yaml
+      - schemas/handoff-muse-to-researcher.yaml
+      - schemas/handoff-muse-to-publisher.yaml
+    inbound:
+      - schemas/handoff-critic-feedback.yaml
+  memory_reads: [meta]
+  memory_writes: [meta, premissa, personagens, temas]
 ---
 
 # Muse — Ideation & Concept Agent

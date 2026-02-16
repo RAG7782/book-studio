@@ -74,6 +74,22 @@ components:
     - character-sheet.md
     - worldbuilding-bible.md
     - book-metadata.md
+  schemas:
+    - entity-model.yaml
+    - handoff-muse-to-architect.yaml
+    - handoff-muse-to-researcher.yaml
+    - handoff-muse-to-publisher.yaml
+    - handoff-researcher-to-architect.yaml
+    - handoff-researcher-to-scribe.yaml
+    - handoff-architect-to-scribe.yaml
+    - handoff-scribe-to-editor.yaml
+    - handoff-editor-to-scribe.yaml
+    - handoff-editor-to-critic.yaml
+    - handoff-editor-to-formatter.yaml
+    - handoff-critic-feedback.yaml
+    - handoff-formatter-to-publisher.yaml
+  memory:
+    - book-state-template.md
   tools: []
   scripts: []
 

@@ -53,8 +53,15 @@ commands:
 
 collaboration:
   sends_to: [publisher]
-  receives_from: [editor, critic]
+  receives_from: [editor]
   handoff: "Entrega livro formatado para Publisher distribuir"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-formatter-to-publisher.yaml
+    inbound:
+      - schemas/handoff-editor-to-formatter.yaml
+  memory_reads: [meta, estrutura, progresso]
+  memory_writes: [progresso]
 ---
 
 # Formatter — Book Production & Layout Agent

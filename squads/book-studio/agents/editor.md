@@ -52,9 +52,18 @@ commands:
     task: editor-consistency-check.md
 
 collaboration:
-  sends_to: [scribe, critic]
+  sends_to: [scribe, critic, formatter]
   receives_from: [scribe]
-  handoff: "Devolve manuscrito revisado para Scribe ajustar ou envia para Critic avaliar"
+  handoff: "Devolve manuscrito revisado para Scribe ajustar, envia para Critic avaliar, ou para Formatter produzir"
+  handoff_schemas:
+    outbound:
+      - schemas/handoff-editor-to-scribe.yaml
+      - schemas/handoff-editor-to-critic.yaml
+      - schemas/handoff-editor-to-formatter.yaml
+    inbound:
+      - schemas/handoff-scribe-to-editor.yaml
+  memory_reads: [meta, personagens, estrutura, progresso]
+  memory_writes: [progresso, feedback]
 ---
 
 # Editor — Revision & Editing Agent
