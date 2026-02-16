@@ -68,6 +68,12 @@ collaboration:
       - schemas/handoff-critic-feedback.yaml
   memory_reads: [meta, premissa, personagens, estrutura, pesquisa, timeline]
   memory_writes: [progresso]
+
+orchestrator:
+  stage: transform
+  position: 2
+  gate_role: null
+  pipeline_commands: ["*status"]
 ---
 
 # Scribe — Writing & Drafting Agent

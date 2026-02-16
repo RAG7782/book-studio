@@ -4,6 +4,16 @@ description: "Workflow otimizado para livros de nao-ficcao"
 type: specialized
 base: full-pipeline
 genre: nonfiction
+orchestrator_config:
+  route: nonfiction
+  stages: [extract, transform, load]
+  gates: [gate-extract-to-transform, gate-revision-loop, gate-transform-to-load]
+  revision_loop: { max_iterations: 3, exit_score: 7 }
+  nonfiction_adaptations:
+    muse: [brainstorm, premise]  # skip character
+    researcher: [investigate, fact-check]  # skip worldbuild, add fact-check
+    transform_loop: true
+    fact_check_per_chapter: true
 ---
 
 # Workflow de Nao-ficcao

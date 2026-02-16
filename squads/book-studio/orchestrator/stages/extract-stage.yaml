@@ -1,0 +1,50 @@
+# Extract Stage — Muse + Researcher
+stage: extract
+description: "Fase de ideacao, pesquisa e concepcao"
+order: 1
+
+agents:
+  - id: muse
+    position: 1
+    execution: sequential
+    tasks:
+      - brainstorm
+      - premise
+      - character  # skip for nonfiction-technical
+    handoff_schemas:
+      out:
+        - handoff-muse-to-architect.yaml
+        - handoff-muse-to-researcher.yaml
+    memory:
+      reads: [meta]
+      writes: [meta, premissa, personagens, temas]
+
+  - id: researcher
+    position: 2
+    execution: sequential
+    conditional: true  # skip for poesia, cronica
+    skip_conditions:
+      - genre: poesia
+      - genre: conto
+        subgenre: cronica
+    tasks:
+      - investigate
+      - worldbuild  # fiction only
+      - fact-check   # nonfiction only
+    handoff_schemas:
+      out:
+        - handoff-researcher-to-architect.yaml
+        - handoff-researcher-to-scribe.yaml
+    memory:
+      reads: [meta, premissa]
+      writes: [pesquisa, mundo]
+
+entry_conditions:
+  - "Projeto iniciado (meta.status = 'ideacao')"
+
+exit_conditions:
+  - "Premissa definida (premissa.logline exists)"
+  - "Genero definido (meta.genre exists)"
+  - "Pesquisa completa (pesquisa.fontes.length > 0) OR researcher skipped"
+
+gate_after: gate-extract-to-transform

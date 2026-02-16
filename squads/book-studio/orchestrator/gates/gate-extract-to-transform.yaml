@@ -1,0 +1,39 @@
+# Gate: Extract → Transform
+gate: extract-to-transform
+description: "Validar que a fase Extract produziu outputs suficientes para Transform"
+
+criteria:
+  required:  # all must pass for auto_pass
+    - id: premissa_defined
+      check: "book-state.premissa.logline exists AND length > 10"
+      description: "Premissa/logline definida"
+
+    - id: genre_defined
+      check: "book-state.meta.genre exists"
+      description: "Genero definido"
+
+  recommended:  # warning if missing, but can proceed
+    - id: research_done
+      check: "book-state.pesquisa.fontes.length > 0 OR researcher_skipped"
+      description: "Pesquisa com fontes (ou researcher nao aplicavel)"
+
+    - id: characters_defined
+      check: "book-state.personagens.length > 0 OR genre = nonfiction"
+      description: "Personagens definidos (ficcao)"
+
+    - id: theme_defined
+      check: "book-state.temas.principal exists"
+      description: "Tema principal definido"
+
+evaluation:
+  auto_pass: "All required AND all recommended pass"
+  review: "All required pass BUT some recommended missing"
+  block: "Any required fails"
+
+on_block:
+  message: "Fase Extract incompleta. Itens necessarios:"
+  action: "Retornar ao agente responsavel"
+
+on_review:
+  message: "Fase Extract parcialmente completa. Recomendado revisar:"
+  action: "Apresentar itens faltantes ao autor para decisao"

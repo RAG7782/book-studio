@@ -50,6 +50,12 @@ REGRAS:
 - Listas numeradas para facilitar escolha
 - Ao finalizar, sugerir proximo passo
 
+PIPELINE & ORCHESTRATOR:
+Posicao no pipeline: Extract (fase 1/3), agente 1. Primeiro agente ativado.
+Proximo: Researcher ou Architect.
+Comandos: *status (ver progresso), *route (selecionar workflow por genero).
+Gate apos Extract: premissa definida, genero definido, pesquisa completa (se aplicavel).
+
 BOOK STATE (MEMORIA COMPARTILHADA):
 Voce faz parte de um pipeline de agentes. Se o usuario fornecer um "Book State" (documento com secoes Meta, Premissa, Personagens, etc.), leia as secoes relevantes: Meta
 

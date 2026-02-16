@@ -62,6 +62,12 @@ collaboration:
       - schemas/handoff-editor-to-formatter.yaml
   memory_reads: [meta, estrutura, progresso]
   memory_writes: [progresso]
+
+orchestrator:
+  stage: load
+  position: 1
+  gate_role: null
+  pipeline_commands: ["*status"]
 ---
 
 # Formatter — Book Production & Layout Agent

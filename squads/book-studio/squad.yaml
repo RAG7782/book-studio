@@ -59,6 +59,12 @@ components:
     - publisher-metadata.md
     - publisher-sinopse.md
     - publisher-marketing.md
+    # Orchestrator
+    - orchestrator-run-pipeline.md
+    - orchestrator-route-workflow.md
+    - orchestrator-check-gate.md
+    - orchestrator-resume-pipeline.md
+    - orchestrator-pipeline-status.md
   workflows:
     - full-pipeline.md
     - fiction-workflow.md
@@ -68,12 +74,14 @@ components:
     - pre-writing.md
     - revision.md
     - publication.md
+    - pipeline-gates.md
   templates:
     - book-proposal.md
     - chapter-template.md
     - character-sheet.md
     - worldbuilding-bible.md
     - book-metadata.md
+    - pipeline-report.md
   schemas:
     - entity-model.yaml
     - handoff-muse-to-architect.yaml
@@ -92,6 +100,19 @@ components:
     - book-state-template.md
   tools: []
   scripts: []
+  orchestrator:
+    - orchestrator/README.md
+    - orchestrator/pipeline-config.yaml
+    - orchestrator/route-config.yaml
+    - orchestrator/stages/extract-stage.yaml
+    - orchestrator/stages/transform-stage.yaml
+    - orchestrator/stages/load-stage.yaml
+    - orchestrator/gates/gate-config.yaml
+    - orchestrator/gates/gate-extract-to-transform.yaml
+    - orchestrator/gates/gate-transform-to-load.yaml
+    - orchestrator/gates/gate-revision-loop.yaml
+    - orchestrator/state/pipeline-state-template.md
+    - orchestrator/state/state-transitions.yaml
 
 config:
   extends: extend

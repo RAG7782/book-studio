@@ -1,0 +1,55 @@
+# Gate: Revision Loop (Editor ↔ Critic)
+gate: revision-loop
+description: "Controla o loop de revisao entre Editor e Critic"
+
+loop:
+  participants:
+    editor:
+      role: "Revisa o manuscrito"
+      tasks: [copy-edit, consistency-check]
+    critic:
+      role: "Avalia qualidade"
+      tasks: [analysis]
+
+  flow:
+    1: "Editor revisa capitulo/manuscrito"
+    2: "Critic avalia e gera score (1-10)"
+    3: "Se score >= exit_score: PASS"
+    4: "Se score < exit_score E iteration < max: feedback → Editor"
+    5: "Se iteration >= max: FORCE EXIT com warning"
+
+  settings:
+    max_iterations: 3
+    exit_score: 7
+    score_dimensions:
+      - premissa
+      - estrutura
+      - personagens
+      - prosa
+      - dialogo
+      - engajamento
+
+criteria:
+  pass:
+    check: "critic.score >= 7"
+    message: "Manuscrito aprovado pelo Critic"
+    action: continue_to_next
+
+  iterate:
+    check: "critic.score < 7 AND iteration < max_iterations"
+    message: "Score abaixo do limiar. Iteracao {n}/{max}."
+    action: "Feedback → Editor → Scribe (se necessario)"
+
+  force_exit:
+    check: "iteration >= max_iterations AND critic.score < 7"
+    message: "⚠️ Limite de iteracoes atingido (score atual: {score}). Prosseguindo com flag de atencao."
+    action: "continue_with_warning"
+    flag: "FLAGGED: Manuscrito prosseguiu com score {score} (abaixo de 7) apos {max} iteracoes"
+
+tracking:
+  per_iteration:
+    - iteration_number
+    - editor_changes_count
+    - critic_score
+    - critic_feedback_summary
+    - improvements_noted

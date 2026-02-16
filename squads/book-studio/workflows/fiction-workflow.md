@@ -4,6 +4,16 @@ description: "Workflow otimizado para livros de ficcao (romance, conto, novela)"
 type: specialized
 base: full-pipeline
 genre: fiction
+orchestrator_config:
+  route: fiction
+  stages: [extract, transform, load]
+  gates: [gate-extract-to-transform, gate-revision-loop, gate-transform-to-load]
+  revision_loop: { max_iterations: 3, exit_score: 7 }
+  fiction_adaptations:
+    muse: [brainstorm, character, premise]
+    researcher: [worldbuild, investigate]
+    architect: [outline, timeline, chapter-plan]
+    transform_loop: true
 ---
 
 # Workflow de Ficcao

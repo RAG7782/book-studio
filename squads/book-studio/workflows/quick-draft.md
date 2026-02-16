@@ -3,6 +3,13 @@ workflow: Rascunho Rapido
 description: "Workflow simplificado para produzir rascunho rapido"
 type: simplified
 stages: [extract-light, transform-light]
+orchestrator_config:
+  route: quick-draft
+  stages: [extract-light, transform-light]
+  gates: []  # no gates in quick draft
+  revision_loop: null  # skip revision
+  skip_agents: [researcher, editor, critic, formatter, publisher]
+  minimal: true
 ---
 
 # Workflow de Rascunho Rapido

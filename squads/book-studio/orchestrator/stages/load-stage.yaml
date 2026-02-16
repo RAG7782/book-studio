@@ -1,0 +1,47 @@
+# Load Stage — Formatter → Publisher
+stage: load
+description: "Fase de formatacao e distribuicao"
+order: 3
+
+agents:
+  - id: formatter
+    position: 1
+    execution: sequential
+    tasks:
+      - markdown
+      - epub
+      - cover-prompt
+    handoff_schemas:
+      out:
+        - handoff-formatter-to-publisher.yaml
+    memory:
+      reads: [meta, estrutura, progresso]
+      writes: [progresso]
+
+  - id: publisher
+    position: 2
+    execution: sequential
+    tasks:
+      - metadata
+      - sinopse
+      - marketing
+    handoff_schemas:
+      out: []  # final stage
+    memory:
+      reads: [meta, premissa, personagens]
+      writes: [meta]
+
+entry_conditions:
+  - "Gate transform-to-load passed"
+  - "Manuscrito aprovado (critic score >= 7 ou force exit)"
+
+exit_conditions:
+  - "Livro formatado em pelo menos 1 formato"
+  - "Metadados completos"
+  - "Sinopse escrita"
+
+final_output:
+  - "Manuscrito formatado (Markdown + EPUB)"
+  - "Kit de publicacao (metadados + sinopse + marketing)"
+  - "Prompt de capa"
+  - "Pipeline report"

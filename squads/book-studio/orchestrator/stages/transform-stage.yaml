@@ -1,0 +1,88 @@
+# Transform Stage — Architect → Scribe → Editor ↔ Critic
+stage: transform
+description: "Fase de estruturacao, escrita, revisao e critica"
+order: 2
+
+agents:
+  - id: architect
+    position: 1
+    execution: sequential
+    tasks:
+      - outline
+      - chapter-plan
+      - timeline  # fiction only
+    handoff_schemas:
+      out:
+        - handoff-architect-to-scribe.yaml
+    memory:
+      reads: [meta, premissa, personagens, pesquisa, mundo]
+      writes: [estrutura, timeline]
+
+  - id: scribe
+    position: 2
+    execution: iterative  # per chapter
+    tasks:
+      - draft-chapter
+      - write-scene
+      - dialogue
+    handoff_schemas:
+      out:
+        - handoff-scribe-to-editor.yaml
+    memory:
+      reads: [meta, premissa, personagens, estrutura, pesquisa, timeline]
+      writes: [progresso]
+
+  - id: editor
+    position: 3
+    execution: iterative  # per chapter
+    gate_role: revision_loop
+    tasks:
+      - copy-edit
+      - structural-review
+      - consistency-check
+    handoff_schemas:
+      out:
+        - handoff-editor-to-scribe.yaml  # revision needed
+        - handoff-editor-to-critic.yaml  # ready for review
+        - handoff-editor-to-formatter.yaml  # final
+    memory:
+      reads: [meta, personagens, estrutura, progresso]
+      writes: [progresso, feedback]
+
+  - id: critic
+    position: 4
+    execution: iterative
+    gate_role: quality_judge
+    tasks:
+      - analysis
+      - beta-read
+    handoff_schemas:
+      out:
+        - handoff-critic-feedback.yaml
+    memory:
+      reads: [meta, premissa, personagens, estrutura, progresso]
+      writes: [feedback]
+
+revision_loop:
+  description: "Loop Editor ↔ Critic ate aprovacao"
+  participants: [editor, critic]
+  flow:
+    - "Scribe entrega rascunho → Editor"
+    - "Editor revisa → Critic"
+    - "Critic avalia (score 1-10)"
+    - "Se score >= 7: aprovado → proximo capitulo ou Load"
+    - "Se score < 7: feedback → Editor → Scribe (se necessario)"
+  max_iterations: 3
+  exit_score: 7
+  force_exit_message: "Limite de iteracoes atingido. Prosseguindo com score atual e flag de atencao."
+
+entry_conditions:
+  - "Gate extract-to-transform passed"
+  - "Premissa e genero definidos"
+
+exit_conditions:
+  - "Todos capitulos com score >= 7 (ou force exit)"
+  - "Structural review completo"
+  - "Consistency check sem itens criticos (🔴)"
+
+gate_after: gate-transform-to-load

@@ -70,6 +70,12 @@ collaboration:
       - schemas/handoff-muse-to-publisher.yaml
   memory_reads: [meta, premissa, personagens]
   memory_writes: [meta]
+
+orchestrator:
+  stage: load
+  position: 2
+  gate_role: null
+  pipeline_commands: ["*status"]
 ---
 
 # Publisher — Distribution & Marketing Agent

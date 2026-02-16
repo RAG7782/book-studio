@@ -1,0 +1,43 @@
+# Gate: Transform → Load
+gate: transform-to-load
+description: "Validar que o manuscrito esta aprovado para producao"
+
+criteria:
+  required:
+    - id: manuscript_complete
+      check: "All chapters drafted (progresso.status != 'pendente')"
+      description: "Todos capitulos escritos"
+
+    - id: critic_approved
+      check: "critic.overall_score >= 7 OR force_exit_applied"
+      description: "Manuscrito aprovado pelo Critic (score >= 7)"
+
+    - id: no_critical_issues
+      check: "editor.consistency.critical_count == 0"
+      description: "Sem inconsistencias criticas (🔴)"
+
+  recommended:
+    - id: structural_review_done
+      check: "editor.structural_review.completed == true"
+      description: "Revisao estrutural realizada"
+
+    - id: beta_read_done
+      check: "critic.beta_read.completed == true"
+      description: "Beta reading simulado"
+
+    - id: all_chapters_scored
+      check: "All chapters have critic score"
+      description: "Todos capitulos avaliados"
+
+evaluation:
+  auto_pass: "All required AND all recommended pass"
+  review: "All required pass BUT some recommended missing"
+  block: "Any required fails"
+
+on_block:
+  message: "Manuscrito nao aprovado para producao. Itens pendentes:"
+  action: "Retornar ao Editor/Critic para resolver"
+
+on_review:
+  message: "Manuscrito parcialmente pronto. Itens recomendados:"
+  action: "Apresentar ao autor para decisao"

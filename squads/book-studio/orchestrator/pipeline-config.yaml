@@ -1,0 +1,67 @@
+# Pipeline Config — Book Studio Orchestrator
+version: "2.0.0"
+description: "Configuracao do pipeline ETL com quality gates"
+
+pipeline:
+  name: book-studio-etl
+  type: etl
+
+  stages:
+    extract:
+      description: "Ideacao, pesquisa e concepcao"
+      agents:
+        - id: muse
+          position: 1
+          tasks: [brainstorm, character, premise]
+          required: true
+        - id: researcher
+          position: 2
+          tasks: [investigate, worldbuild, fact-check]
+          required: false  # conditional by genre (skip for poesia)
+      gate_after: gate-extract-to-transform
+
+    transform:
+      description: "Estruturacao, escrita, revisao e critica"
+      agents:
+        - id: architect
+          position: 1
+          tasks: [outline, chapter-plan, timeline]
+          required: true
+        - id: scribe
+          position: 2
+          tasks: [draft-chapter, write-scene, dialogue]
+          required: true
+        - id: editor
+          position: 3
+          tasks: [copy-edit, structural-review, consistency-check]
+          required: true
+          gate_role: revision_loop
+        - id: critic
+          position: 4
+          tasks: [analysis, beta-read]
+          required: true
+          gate_role: quality_judge
+      revision_loop:
+        agents: [editor, critic]
+        max_iterations: 3
+        exit_condition: "critic_score >= 7"
+        gate: gate-revision-loop
+      gate_after: gate-transform-to-load
+
+    load:
+      description: "Formatacao e distribuicao"
+      agents:
+        - id: formatter
+          position: 1
+          tasks: [markdown, epub, cover-prompt]
+          required: true
+        - id: publisher
+          position: 2
+          tasks: [metadata, sinopse, marketing]
+          required: true
+
+  settings:
+    handoff_validation: strict  # validates against F1 schemas
+    auto_save_state: true
+    language: pt-BR
+    state_file: state/pipeline-state.md

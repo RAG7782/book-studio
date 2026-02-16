@@ -1,0 +1,37 @@
+# Gate Config — Quality Gates System
+version: "1.0.0"
+description: "Configuracao dos quality gates do pipeline"
+
+levels:
+  auto_pass:
+    description: "Criterios atendidos automaticamente — prosseguir"
+    action: continue
+    color: "🟢"
+
+  review:
+    description: "Criterios parcialmente atendidos — requer revisao do autor"
+    action: pause_for_review
+    color: "🟡"
+
+  block:
+    description: "Criterios nao atendidos — nao pode prosseguir"
+    action: block
+    color: "🔴"
+
+gates:
+  - id: gate-extract-to-transform
+    name: "Extract → Transform"
+    file: gate-extract-to-transform.yaml
+
+  - id: gate-revision-loop
+    name: "Revision Loop (Editor ↔ Critic)"
+    file: gate-revision-loop.yaml
+
+  - id: gate-transform-to-load
+    name: "Transform → Load"
+    file: gate-transform-to-load.yaml
+
+settings:
+  require_author_approval: true  # author must approve at review gates
+  auto_save_checkpoint: true
+  log_gate_results: true

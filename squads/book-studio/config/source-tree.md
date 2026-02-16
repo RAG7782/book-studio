@@ -65,6 +65,22 @@ book-studio/
 │       ├── tools/
 │       ├── scripts/
 │       │   └── validate-handoff.js  # NOVO
+│       ├── orchestrator/              # Pipeline orchestrator (NOVO F2)
+│       │   ├── README.md
+│       │   ├── pipeline-config.yaml
+│       │   ├── route-config.yaml
+│       │   ├── stages/
+│       │   │   ├── extract-stage.yaml
+│       │   │   ├── transform-stage.yaml
+│       │   │   └── load-stage.yaml
+│       │   ├── gates/
+│       │   │   ├── gate-config.yaml
+│       │   │   ├── gate-extract-to-transform.yaml
+│       │   │   ├── gate-transform-to-load.yaml
+│       │   │   └── gate-revision-loop.yaml
+│       │   └── state/
+│       │       ├── pipeline-state-template.md
+│       │       └── state-transitions.yaml
 │       └── data/
 │           └── genres.yaml
 └── manuscripts/

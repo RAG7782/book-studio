@@ -59,6 +59,12 @@ collaboration:
       - schemas/handoff-editor-to-critic.yaml
   memory_reads: [meta, premissa, personagens, estrutura, progresso]
   memory_writes: [feedback]
+
+orchestrator:
+  stage: transform
+  position: 4
+  gate_role: quality_judge
+  pipeline_commands: ["*status", "*check-gate"]
 ---
 
 # Critic — Literary Analysis & Feedback Agent

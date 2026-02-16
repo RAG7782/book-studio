@@ -4,6 +4,12 @@ description: "Pipeline end-to-end: da ideia ao livro publicado"
 type: etl
 stages: [extract, transform, load]
 estimated_duration: "Variavel (semanas a meses dependendo do escopo)"
+orchestrator_config:
+  route: default
+  stages: [extract, transform, load]
+  gates: [gate-extract-to-transform, gate-revision-loop, gate-transform-to-load]
+  revision_loop: { max_iterations: 3, exit_score: 7 }
+  genre_routing: true
 ---
 
 # Pipeline Completo — Da Ideia ao Livro

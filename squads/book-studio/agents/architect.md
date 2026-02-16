@@ -70,6 +70,12 @@ collaboration:
       - schemas/handoff-critic-feedback.yaml
   memory_reads: [meta, premissa, personagens, pesquisa, mundo]
   memory_writes: [estrutura, timeline]
+
+orchestrator:
+  stage: transform
+  position: 1
+  gate_role: null
+  pipeline_commands: ["*status"]
 ---
 
 # Architect — Structure & Outline Agent

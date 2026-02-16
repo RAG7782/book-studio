@@ -70,6 +70,12 @@ collaboration:
       - schemas/handoff-critic-feedback.yaml
   memory_reads: [meta]
   memory_writes: [meta, premissa, personagens, temas]
+
+orchestrator:
+  stage: extract
+  position: 1
+  gate_role: null
+  pipeline_commands: ["*status", "*route"]
 ---
 
 # Muse — Ideation & Concept Agent

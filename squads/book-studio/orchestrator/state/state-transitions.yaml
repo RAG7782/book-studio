@@ -1,0 +1,107 @@
+# State Transitions — Pipeline State Machine
+version: "1.0.0"
+description: "Transicoes validas entre estados do pipeline"
+
+states:
+  - id: not_started
+    label: "Nao iniciado"
+
+  - id: extract_in_progress
+    label: "Extract em andamento"
+
+  - id: extract_gate_pending
+    label: "Gate Extract→Transform pendente"
+
+  - id: extract_gate_blocked
+    label: "Gate Extract→Transform bloqueado"
+
+  - id: transform_in_progress
+    label: "Transform em andamento"
+
+  - id: revision_loop
+    label: "Loop de revisao (Editor ↔ Critic)"
+
+  - id: transform_gate_pending
+    label: "Gate Transform→Load pendente"
+
+  - id: transform_gate_blocked
+    label: "Gate Transform→Load bloqueado"
+
+  - id: load_in_progress
+    label: "Load em andamento"
+
+  - id: completed
+    label: "Pipeline completo"
+
+  - id: paused
+    label: "Pipeline pausado"
+
+  - id: error
+    label: "Erro no pipeline"
+
+transitions:
+  - from: not_started
+    to: extract_in_progress
+    trigger: "*run-pipeline"
+
+  - from: extract_in_progress
+    to: extract_gate_pending
+    trigger: "Extract stage complete"
+
+  - from: extract_gate_pending
+    to: transform_in_progress
+    trigger: "Gate passed (auto_pass or review approved)"
+
+  - from: extract_gate_pending
+    to: extract_gate_blocked
+    trigger: "Gate blocked"
+
+  - from: extract_gate_blocked
+    to: extract_in_progress
+    trigger: "Issues resolved, retry"
+
+  - from: transform_in_progress
+    to: revision_loop
+    trigger: "Chapter ready for review"
+
+  - from: revision_loop
+    to: transform_in_progress
+    trigger: "Critic score >= 7 or force exit"
+
+  - from: transform_in_progress
+    to: transform_gate_pending
+    trigger: "All chapters reviewed"
+
+  - from: transform_gate_pending
+    to: load_in_progress
+    trigger: "Gate passed"
+
+  - from: transform_gate_pending
+    to: transform_gate_blocked
+    trigger: "Gate blocked"
+
+  - from: transform_gate_blocked
+    to: transform_in_progress
+    trigger: "Issues resolved, retry"
+
+  - from: load_in_progress
+    to: completed
+    trigger: "All Load tasks complete"
+
+  # Pause/Resume
+  - from: "*"  # any state except completed/error
+    to: paused
+    trigger: "*pause or user interrupt"
+
+  - from: paused
+    to: "{previous_state}"
+    trigger: "*resume"
+
+  # Error recovery
+  - from: "*"
+    to: error
+    trigger: "Unrecoverable error"
+
+  - from: error
+    to: "{last_known_good_state}"
+    trigger: "Manual recovery"

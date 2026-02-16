@@ -64,6 +64,12 @@ collaboration:
       - schemas/handoff-scribe-to-editor.yaml
   memory_reads: [meta, personagens, estrutura, progresso]
   memory_writes: [progresso, feedback]
+
+orchestrator:
+  stage: transform
+  position: 3
+  gate_role: revision_loop
+  pipeline_commands: ["*status", "*check-gate"]
 ---
 
 # Editor — Revision & Editing Agent

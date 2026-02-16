@@ -69,6 +69,14 @@ collaboration:
       - schemas/handoff-muse-to-researcher.yaml
   memory_reads: [meta, premissa]
   memory_writes: [pesquisa, mundo]
+
+orchestrator:
+  stage: extract
+  position: 2
+  gate_role: null
+  conditional: true
+  skip_when: [poesia, cronica]
+  pipeline_commands: ["*status"]
 ---
 
 # Researcher — Research & Worldbuilding Agent

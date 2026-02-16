@@ -1,0 +1,216 @@
+# Route Config — Genre Router
+version: "1.0.0"
+description: "Mapeamento genero → workflow com adaptacoes por subgenero"
+
+default_workflow: full-pipeline
+
+routing:
+  fiction:
+    workflow: fiction-workflow
+    genres:
+      romance:
+        adaptations:
+          emphasis: [character-chemistry, tropes, emotional-arc]
+          muse_focus: character-first
+          scribe_voice: commercial
+        subgenres:
+          romance-literario:
+            scribe_voice: literary
+          romance-historico:
+            researcher_required: true
+            researcher_focus: periodo-historico
+          romance-policial:
+            emphasis_add: pacing
+            scribe_voice: commercial
+          romance-de-formacao:
+            emphasis_add: character-arc
+
+      conto:
+        adaptations:
+          emphasis: [single-effect, compression, impact]
+          architect_structure: single-effect
+          scribe_voice: literary
+        subgenres:
+          microconto:
+            word_limit: 1000
+            architect_structure: flash
+          cronica:
+            scribe_voice: humor
+            researcher_required: false
+
+      novela:
+        adaptations:
+          emphasis: [pacing, focus, economy]
+          architect_structure: three-act
+
+      fantasia:
+        adaptations:
+          emphasis: [worldbuilding, magic-system, mythology]
+          researcher_required: true
+          researcher_focus: worldbuilding
+          muse_focus: world-first
+        subgenres:
+          high-fantasy:
+            researcher_depth: deep
+          urban-fantasy:
+            researcher_focus: contemporary-world
+          dark-fantasy:
+            scribe_voice: literary
+            emphasis_add: atmosphere
+          fantasia-brasileira:
+            researcher_focus: folklore-brasileiro
+
+      ficcao-cientifica:
+        adaptations:
+          emphasis: [speculation, technology, plausibility]
+          researcher_required: true
+          researcher_focus: science-base
+        subgenres:
+          hard-sf:
+            researcher_depth: deep
+            fact_check: strict
+          space-opera:
+            emphasis_add: worldbuilding
+          cyberpunk:
+            emphasis_add: atmosphere
+            scribe_voice: noir
+          distopia:
+            emphasis_add: social-commentary
+
+      terror:
+        adaptations:
+          emphasis: [atmosphere, dread, pacing]
+          scribe_voice: atmospheric
+        subgenres:
+          horror-cosmico:
+            emphasis_add: existential-dread
+          horror-psicologico:
+            emphasis_add: unreliable-narrator
+          folk-horror:
+            researcher_focus: folklore
+
+      suspense:
+        adaptations:
+          emphasis: [pacing, reveals, red-herrings]
+          architect_structure: save-the-cat
+        subgenres:
+          thriller-psicologico:
+            emphasis_add: unreliable-narrator
+          thriller-policial:
+            researcher_required: true
+            researcher_focus: procedural
+          espionagem:
+            researcher_required: true
+          legal-thriller:
+            researcher_required: true
+            researcher_focus: legal-system
+
+      infantil:
+        adaptations:
+          emphasis: [age-appropriate, visual, rhythm]
+          scribe_voice: children
+          formatter_focus: illustrations
+
+      jovem-adulto:
+        adaptations:
+          emphasis: [identity, coming-of-age, voice]
+          scribe_voice: commercial
+
+      roteiro:
+        adaptations:
+          emphasis: [visual-storytelling, dialogue, format]
+          architect_structure: three-act
+          formatter_format: screenplay
+
+  nonfiction:
+    workflow: nonfiction-workflow
+    genres:
+      biografia:
+        adaptations:
+          emphasis: [timeline, voices, ethics]
+          researcher_required: true
+          researcher_depth: deep
+          architect_structure: chronological
+
+      autoajuda:
+        adaptations:
+          emphasis: [exercises, motivation, actionable]
+          architect_structure: problem-solution
+          scribe_voice: motivational
+
+      ensaio:
+        adaptations:
+          emphasis: [argument, personal-voice, rhythm]
+          scribe_voice: literary
+          architect_structure: thematic
+
+      tecnico:
+        adaptations:
+          emphasis: [examples, step-by-step, code]
+          researcher_required: true
+          scribe_voice: technical
+          critic_focus: code_review
+
+      academico:
+        adaptations:
+          emphasis: [methodology, citations, rigor]
+          researcher_required: true
+          researcher_depth: deep
+          critic_focus: academic_rigor
+
+      manual:
+        adaptations:
+          emphasis: [clarity, step-by-step, reference]
+          architect_structure: reference
+          scribe_voice: technical
+
+      jornalismo-literario:
+        adaptations:
+          emphasis: [narrative, facts, immersion]
+          researcher_required: true
+          scribe_voice: literary
+
+      historico:
+        adaptations:
+          emphasis: [accuracy, narrative, sources]
+          researcher_required: true
+          researcher_depth: deep
+          architect_structure: chronological
+
+      filosofia:
+        adaptations:
+          emphasis: [argument, clarity, depth]
+          architect_structure: thematic
+          scribe_voice: academic
+
+      negocios:
+        adaptations:
+          emphasis: [frameworks, metrics, case-studies]
+          architect_structure: problem-solution
+          scribe_voice: business
+
+  special:
+    poesia:
+      workflow: quick-draft
+      adaptations:
+        skip_agents: [researcher]
+        emphasis: [form, imagery, voice, rhythm]
+        muse_focus: image-first
+        architect_structure: collection
+        scribe_voice: poetry
+      forms:
+        soneto:
+          architect_structure: fixed-form
+        haiku:
+          architect_structure: fixed-form
+        verso-livre:
+          architect_structure: free
+        prosa-poetica:
+          architect_structure: free
+        cordel:
+          architect_structure: fixed-form
+          researcher_focus: nordestino
+
+  fallback:
+    workflow: full-pipeline
+    message: "Genero nao reconhecido. Usando pipeline completo."
