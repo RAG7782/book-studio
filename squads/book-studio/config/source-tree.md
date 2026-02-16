@@ -81,7 +81,36 @@ book-studio/
 │       │   └── state/
 │       │       ├── pipeline-state-template.md
 │       │       └── state-transitions.yaml
-│       └── data/
-│           └── genres.yaml
+│       ├── data/
+│       │   └── genres.yaml
+│       └── examples/                # Test runs e referências (NOVO F3)
+│           └── conto-test/          # F3: Pipeline completo "O Relojoeiro"
+│               ├── README.md
+│               ├── book-state.md
+│               ├── pipeline-state.md
+│               ├── pipeline-report.md
+│               ├── validation-report.md
+│               ├── handoffs/        # 11 handoffs preenchidos
+│               │   ├── 01-muse-to-researcher.md
+│               │   ├── 02-muse-to-architect.md
+│               │   ├── 03-researcher-to-architect.md
+│               │   ├── 04-researcher-to-scribe.md
+│               │   ├── 05-architect-to-scribe.md
+│               │   ├── 06-scribe-to-editor.md
+│               │   ├── 07-editor-to-critic.md
+│               │   ├── 08-critic-feedback.md
+│               │   ├── 08b-critic-feedback-r2.md
+│               │   ├── 09-editor-to-formatter.md
+│               │   └── 10-formatter-to-publisher.md
+│               ├── chapters/        # 3 drafts + manuscrito revisado
+│               │   ├── cena-01-draft.md
+│               │   ├── cena-02-draft.md
+│               │   ├── cena-03-draft.md
+│               │   └── manuscrito-revisado.md
+│               └── deliverables/    # Entregas finais
+│                   ├── manuscrito-final.md
+│                   ├── cover-prompt.md
+│                   ├── metadata.md
+│                   └── sinopse-marketing.md
 └── manuscripts/
 ```
