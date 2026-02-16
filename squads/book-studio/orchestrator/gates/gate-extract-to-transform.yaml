@@ -37,3 +37,8 @@ on_block:
 on_review:
   message: "Fase Extract parcialmente completa. Recomendado revisar:"
   action: "Apresentar itens faltantes ao autor para decisao"
+
+timeout:
+  review: 24h
+  block: 48h
+  on_timeout: "Notificar autor e listar itens pendentes"

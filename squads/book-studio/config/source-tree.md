@@ -57,14 +57,16 @@ book-studio/
 │       │   ├── character-sheet.md
 │       │   ├── worldbuilding-bible.md
 │       │   ├── book-metadata.md
-│       │   └── handoff-output-template.md  # NOVO
+│       │   ├── handoff-output-template.md
+│       │   └── pipeline-report-short.md    # GAP-006: Template compacto <10k palavras
 │       ├── checklists/
 │       │   ├── pre-writing.md
 │       │   ├── revision.md
 │       │   └── publication.md
 │       ├── tools/
 │       ├── scripts/
-│       │   └── validate-handoff.js  # NOVO
+│       │   ├── validate-handoff.js         # Validacao squad + handoff data (GAP-007)
+│       │   └── README.md                   # Documentacao de uso
 │       ├── orchestrator/              # Pipeline orchestrator (NOVO F2)
 │       │   ├── README.md
 │       │   ├── pipeline-config.yaml
@@ -82,7 +84,8 @@ book-studio/
 │       │       ├── pipeline-state-template.md
 │       │       └── state-transitions.yaml
 │       ├── data/
-│       │   └── genres.yaml
+│       │   ├── genres.yaml
+│       │   └── scoring-rubric.yaml         # GAP-005: Rubrica do Critic (10 dimensoes)
 │       └── examples/                # Test runs e referências (NOVO F3)
 │           └── conto-test/          # F3: Pipeline completo "O Relojoeiro"
 │               ├── README.md
@@ -90,13 +93,16 @@ book-studio/
 │               ├── pipeline-state.md
 │               ├── pipeline-report.md
 │               ├── validation-report.md
-│               ├── handoffs/        # 11 handoffs preenchidos
+│               ├── handoffs/        # 13 handoffs preenchidos (GAP-001/002)
 │               │   ├── 01-muse-to-researcher.md
 │               │   ├── 02-muse-to-architect.md
+│               │   ├── 02b-muse-to-publisher.md    # GAP-002: Marketing paralelo
+
 │               │   ├── 03-researcher-to-architect.md
 │               │   ├── 04-researcher-to-scribe.md
 │               │   ├── 05-architect-to-scribe.md
 │               │   ├── 06-scribe-to-editor.md
+│               │   ├── 06b-editor-to-scribe.md     # GAP-001: Rewrite estrutural
 │               │   ├── 07-editor-to-critic.md
 │               │   ├── 08-critic-feedback.md
 │               │   ├── 08b-critic-feedback-r2.md

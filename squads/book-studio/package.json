@@ -1,0 +1,16 @@
+{
+  "name": "book-studio-squad",
+  "version": "1.0.0",
+  "description": "Book Studio Squad - Validation Tools",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate-handoff.js",
+    "validate-data": "node scripts/validate-handoff.js --validate-data"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

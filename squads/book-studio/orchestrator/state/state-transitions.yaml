@@ -105,3 +105,30 @@ transitions:
   - from: error
     to: "{last_known_good_state}"
     trigger: "Manual recovery"
+
+scenarios:
+  extract_gate_blocked:
+    description: "Gate Extract→Transform bloqueou porque criterios required falharam"
+    example: "Premissa vaga ('escrever algo sobre tempo'), genre_defined: false"
+    recovery: "Retornar ao Muse para refinar premissa. Quando resolvido, retry gate."
+    test_trigger: "Submeter pipeline com premissa < 10 caracteres"
+
+  transform_gate_blocked:
+    description: "Gate Transform→Load bloqueou porque manuscrito nao aprovado"
+    example: "Critic score 5.0 apos 3 iteracoes (force_exit), critical issues pendentes"
+    recovery: "Retornar ao Editor/Scribe para resolver. Pode exigir rewrite de capitulos."
+    test_trigger: "Simular Critic dando score < 7 em todas 3 iteracoes + critical issue"
+
+  paused:
+    description: "Pipeline pausado por intervencao manual do autor"
+    example: "Autor quer revisar outline antes de Scribe comecar a escrever"
+    recovery: "Comando *resume retorna ao estado anterior. Book-state preservado."
+    test_trigger: "Comando *pause durante transform_in_progress"
+    preserves: ["book-state", "pipeline-state", "handoffs", "checkpoints"]
+
+  error:
+    description: "Erro irrecuperavel no pipeline"
+    example: "Agente indisponivel, schema corrompido, book-state inconsistente"
+    recovery: "Diagnosticar erro, corrigir causa, comando *resume para last_known_good_state"
+    test_trigger: "Simular falha de schema validation em handoff"
+    preserves: ["book-state (ultimo checkpoint)", "pipeline-state", "log de execucao"]

@@ -7,6 +7,12 @@ source: muse
 target: publisher
 description: "Muse entrega conceito para Publisher posicionar no mercado"
 
+usage:
+  when: "Early in Extract stage, after Muse defines premise"
+  purpose: "Allow Publisher to start marketing prep in parallel with Transform"
+  trigger: "Automatic after muse-premise task completes"
+  note: "This is optional and runs in parallel — does not block pipeline"
+
 required:
   premise:
     type: object

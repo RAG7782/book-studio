@@ -33,7 +33,18 @@
 | Editor | [status] | [lista] | |
 | Critic | [status] | [lista] | Score: [n]/10 |
 
-**Revision Loop**: Iteracao [n]/3 | Score atual: [n]/10
+**Revision Loop**
+
+| Iteracao | Score | Issues Identificados | Mudancas Aplicadas | Status |
+|----------|-------|---------------------|-------------------|--------|
+| 1 | [n]/10 | [lista de issues] | [lista de mudancas] | [iterate/pass/force_exit] |
+| 2 | [n]/10 | [lista de issues] | [lista de mudancas] | [iterate/pass/force_exit] |
+| 3 | [n]/10 | [lista de issues] | [lista de mudancas] | [iterate/pass/force_exit] |
+
+- **Max Iteracoes:** 3
+- **Score Minimo:** 7.0
+- **Threshold Critico:** 4.0 (retorna ao Scribe se abaixo)
+
 **Gate Transform→Load**: [nao_avaliado/pass/review/block]
 
 ### Load

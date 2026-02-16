@@ -82,6 +82,7 @@ components:
     - worldbuilding-bible.md
     - book-metadata.md
     - pipeline-report.md
+    - pipeline-report-short.md
   schemas:
     - entity-model.yaml
     - handoff-muse-to-architect.yaml
@@ -98,8 +99,12 @@ components:
     - handoff-formatter-to-publisher.yaml
   memory:
     - book-state-template.md
+  data:
+    - genres.yaml
+    - scoring-rubric.yaml
   tools: []
-  scripts: []
+  scripts:
+    - validate-handoff.js
   orchestrator:
     - orchestrator/README.md
     - orchestrator/pipeline-config.yaml

@@ -1,0 +1,222 @@
+# Scoring Rubric — Critic Agent
+version: "1.0.0"
+description: "Rubrica de avaliacao para calibracao do Critic. Define o significado de cada score (1-10) por dimensao."
+
+usage:
+  agent: critic
+  tasks: [critic-analysis, critic-beta-read]
+  gate: gate-revision-loop
+  threshold: 7  # minimo para aprovacao
+
+dimensions:
+  premissa:
+    label: "Premissa e Conceito"
+    description: "Originalidade e clareza da ideia central"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Premissa confusa, generica ou plagiada. Leitor nao consegue identificar o tema central ou proposito da obra. High-concept mal executado ou ausente."
+      3-4:
+        label: "Fraco"
+        description: "Premissa identificavel mas sem originalidade. Copia direta de obras conhecidas sem twist. Previsivel desde o inicio. Leitor sabe exatamente o que vai acontecer."
+      5-6:
+        label: "Adequado"
+        description: "Premissa clara e funcional. Nao surpreende mas sustenta a narrativa. Execucao competente de um conceito familiar. Leitor aceita o setup sem entusiasmo especial."
+      7-8:
+        label: "Bom"
+        description: "Premissa original com twist interessante. Combinacao inesperada de elementos conhecidos ou abordagem fresca de tema classico. Gera curiosidade genuina e vontade de continuar."
+      9-10:
+        label: "Excelente"
+        description: "Premissa excepcional e inesquecivel. Redefine expectativas do genero ou cria subgenero proprio. High-concept que vende sozinho. Leitor evangeliza a ideia para outros antes mesmo de terminar."
+
+  estrutura:
+    label: "Estrutura Narrativa"
+    description: "Organizacao de atos, pacing, escalada dramatica"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Estrutura ausente ou quebrada. Sem atos claros. Eventos randomicos sem causa-efeito. Pacing caotico. Cliffhangers fracos ou ausentes. Leitor perdido no fluxo."
+      3-4:
+        label: "Fraco"
+        description: "Estrutura reconhecivel mas mal executada. Atos desbalanceados (Ato 2 arrastado ou curto demais). Midpoint fraco. Climax antecipado demais ou sem setup. Deus ex machina."
+      5-6:
+        label: "Adequado"
+        description: "Estrutura funcional. 3 atos presentes, pacing OK. Beats principais no lugar (inciting incident, midpoint, darkest moment, climax). Nada brilhante mas nao frustra."
+      7-8:
+        label: "Bom"
+        description: "Estrutura bem executada com variacao estrategica. Pacing controlado com aceleracoes e pausas intencionais. Escalada dramatica consistente. Cliffhangers fortes. Payoffs satisfatorios."
+      9-10:
+        label: "Excelente"
+        description: "Estrutura magistral. Inovacao dentro do genero (narrativa nao-linear funcional, estrutura em espelho, etc). Cada beat amplia stakes. Impossible de largar. Reader nao percebe estrutura, so sente impacto."
+
+  personagens:
+    label: "Personagens"
+    description: "Depth, consistencia, arcos de transformacao"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Personagens planos ou inconsistentes. Protagonista sem agencia ou objetivo claro. Motivacoes confusas. Decisoes OOC (out of character) frequentes. Leitor nao se importa com ninguem."
+      3-4:
+        label: "Fraco"
+        description: "Personagens estereotipados. Chosen One sem earned power. Mary Sue / Gary Stu. Secundarios intercambiaveis. Nao evoluem ou mudam sem razao. Dialogo expoe demais (tells, nao shows)."
+      5-6:
+        label: "Adequado"
+        description: "Personagens funcionais. Protagonista tem objetivo e motivacao clara. Arco de transformacao presente mas previsivel. Secundarios tem funcao na trama. Consistencia basica mantida."
+      7-8:
+        label: "Bom"
+        description: "Personagens complexos e believable. Protagonista tem flaw que impacta trama. Arco de transformacao earned e satisfatorio. Secundarios tem vida propria e subplots. Decisoes coerentes com setup."
+      9-10:
+        label: "Excelente"
+        description: "Personagens inesqueciveis. Protagonista vive na mente do leitor apos o fim. Complexidade moral (shades of gray). Arco de transformacao surprising mas inevitavel em retrospecto. Cada personagem poderia protagonizar propria historia."
+
+  prosa:
+    label: "Prosa e Estilo"
+    description: "Qualidade da escrita, voz, fluidez"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Prosa confusa ou amadora. Frases mal construidas. Repeticao excessiva de palavras. Adverbios desnecessarios a cada linha. Purple prose ou oposto (dry prose). Leitor trava a cada paragrafo."
+      3-4:
+        label: "Fraco"
+        description: "Prosa funcional mas sem personalidade. Cliches abundantes. Show-don't-tell ignorado (telling constante). Metaforas forcadas. Voz inconsistente entre capitulos. Transparente mas nao elegante."
+      5-6:
+        label: "Adequado"
+        description: "Prosa clara e competente. Voz identificavel. Flui bem sem chamar atencao para si. Equilibrio entre show/tell. Algumas escolhas de palavras interessantes. Leitor nao tropeça."
+      7-8:
+        label: "Bom"
+        description: "Prosa elegante e intencional. Voz forte e consistente. Metaforas fresh e apropriadas ao genero. Ritmo variado (frases curtas para tensao, longas para introspeccao). Show > tell."
+      9-10:
+        label: "Excelente"
+        description: "Prosa memoravel. Cada frase carrega peso. Voz unica e inesquecivel. Leitor sublinha passagens. Prosa serve historia (nao se exibe). Quotes virais. Nivel de publicacao imediata."
+
+  dialogo:
+    label: "Dialogo"
+    description: "Naturalidade, subtext, voice de cada personagem"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Dialogo artificial ou expositivo. Personagens explicam plot uns aos outros. Sem subtext. Todos falam igual. Tags excessivos ou desnecessarios. 'Como voce sabe, Bob...' frequente."
+      3-4:
+        label: "Fraco"
+        description: "Dialogo funcional mas generica. On-the-nose (personagens dizem exatamente o que sentem). Voice indistinta. Pouco subtext. Muito tell via dialogo. Leitor pula para achar acao."
+      5-6:
+        label: "Adequado"
+        description: "Dialogo natural para o genero. Personagens principais tem voice reconhecivel. Algum subtext. Equilibrio entre revelar e esconder. Leitor nao questiona autenticidade."
+      7-8:
+        label: "Bom"
+        description: "Dialogo sharp com subtext consistente. Cada personagem tem speech pattern unico. Conflito mesmo em conversas mundanas. Reader pode identificar quem fala sem tags. Naturalidade para periodo/setting."
+      9-10:
+        label: "Excelente"
+        description: "Dialogo quotable. Subtext em camadas. Conversas servem multiplos propositos (plot + character + tema). Leitor acha referencias mesmo depois de reler. Aaron Sorkin / Tarantino level."
+
+  worldbuilding:
+    label: "Worldbuilding"
+    description: "Construcao de mundo (quando aplicavel ao genero)"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Mundo generico ou inconsistente. Regras mudam conforme conveniencia da trama. Infodump excessivo. Nao se sustenta sob escrutinio. Leitor constantemente confuso sobre como mundo funciona."
+      3-4:
+        label: "Fraco"
+        description: "Mundo copiado de obras famosas sem adaptacao. Sistema de magia / tech / social mal explicado ou contradictorio. Iceberg theory ignorado (autor mostra 100% do mundo). Setting nao impacta trama."
+      5-6:
+        label: "Adequado"
+        description: "Mundo coerente e funcional. Regras claras. Leitor entende o suficiente para seguir trama. Algumas ideias originais. Nao se destaca mas nao frustra. (Para generos sem worldbuilding pesado, = adequado se setting e believable)."
+      7-8:
+        label: "Bom"
+        description: "Mundo imersivo e original. Detalhes revelados organicamente via acao. Sistema de magia / tech / social bem pensado e consistente. Setting impacta decisoes dos personagens. Leitor quer explorar mais."
+      9-10:
+        label: "Excelente"
+        description: "Mundo iconic e inesquecivel. Sanderson-level magic system ou equivalent. Regras internas perfeitas. Leitor faz fanart e RPG do mundo. Expansao para outros livros e obvio. (Tolkien, Sanderson, Le Guin level)."
+
+  tema:
+    label: "Tema e Profundidade"
+    description: "Mensagem, layers de significado, resonancia emocional"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Tema ausente ou superficial. Plot sem significado maior. Nao deixa nada no leitor apos o fim. Entretenimento vazio ou mensagem pesada demais (preachy). Leitor esquece em 24h."
+      3-4:
+        label: "Fraco"
+        description: "Tema generico ('bem vs mal', 'amor vence'). Subtexto inexistente. Autor tells tema via dialogo explicito. Nao convida reflexao. Mensagem simplista para complexidade do mundo."
+      5-6:
+        label: "Adequado"
+        description: "Tema identificavel e relevante. Subtexto presente mas simples. Deixa alguma impressao emocional. Nao prega mas tambem nao esconde mensagem. Nivel de maioria dos bestsellers comerciais."
+      7-8:
+        label: "Bom"
+        description: "Tema rico e multicamadas. Subtexto forte (metafora, simbolismo). Convida reflexao sem ser preachy. Diferentes leitores extraem diferentes significados. Resonancia emocional duravel."
+      9-10:
+        label: "Excelente"
+        description: "Tema universal e transformador. Obra funciona como metafora em multiplos niveis. Leitor repensa vida propria. Discussoes academicas possiveis. Relevancia transcende geracao. (1984, O Senhor dos Aneis, Cem Anos de Solidao level)."
+
+  engajamento:
+    label: "Page-turner Quality"
+    description: "Vontade de continuar lendo, hooks, DNF risk"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Leitor abandona antes de 20%. Sem hooks. Capitulos terminam sem cliffhanger. Stakes ausentes ou nao-claros. Pacing morto. Boring even for genre fans."
+      3-4:
+        label: "Fraco"
+        description: "Leitor continua por obrigacao (ja comecou) ou genero favorito. Poucos momentos de tensao. Facil largar por dias sem vontade de voltar. DNF risk moderado (40-50%)."
+      5-6:
+        label: "Adequado"
+        description: "Leitor termina sem grande esforco. Alguns hooks bons. Interesse sustentado. Vontade de saber o fim mas nao urgencia. Le em sessoes normais (nao binge). DNF risk baixo (10-20%)."
+      7-8:
+        label: "Bom"
+        description: "Leitor tem dificuldade em largar. Cliffhangers fortes. 'Mais um capitulo' syndrome. Stakes claros e crescentes. Perde horas de sono. Binge-read provavel."
+      9-10:
+        label: "Excelente"
+        description: "Impossible de largar. Leitor cancela compromissos para terminar. Le ate de madrugada. Pensa no livro quando nao esta lendo. Instant re-read ou recomendacao evangelica. DNF rate < 1%."
+
+  mercado:
+    label: "Marketability"
+    description: "Viabilidade comercial, fit com genero, appeal do publico-alvo"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Nao se encaixa em nenhum genero claro. Publico-alvo indefinido. Tropes absent ou mal executados. Comp titles impossiveis. Unmarketable mesmo com budget."
+      3-4:
+        label: "Fraco"
+        description: "Genero identificavel mas execucao nao atende expectativas. Publico nicho demais ou amplo demais. Comp titles datados (10+ anos). Hard sell mesmo para fa do genero."
+      5-6:
+        label: "Adequado"
+        description: "Fit claro com genero. Tropes esperados presentes e competentes. Publico-alvo definido. Comp titles obvios. Venderia numeros modestos. Mid-list realistic."
+      7-8:
+        label: "Bom"
+        description: "Strong market fit. Tropes + twist fresh. Comp titles recentes e bem-sucedidos. High-concept hook. Potential breakout se marketing bom. Agents/editors interessados."
+      9-10:
+        label: "Excelente"
+        description: "Bestseller potential. High-concept viral. IP expansion obvio (filme, serie, merch). Auction material. Comp titles = top of charts. Instant preorders. Hype organico garantido."
+
+  overall:
+    label: "Overall Quality"
+    description: "Avaliacao holistica considerando todas as dimensoes"
+    bands:
+      1-2:
+        label: "Critico"
+        description: "Manuscrito nao publicavel no estado atual. Requer reescrita fundamental. Multiplas dimensoes criticas. Mesmo com revisao pesada, estrutura base e falha."
+      3-4:
+        label: "Fraco"
+        description: "Early draft. Estrutura presente mas execucao fraca. Revisao pesada necessaria. Potencial existe mas distante. Meses de trabalho antes de query agents."
+      5-6:
+        label: "Adequado"
+        description: "Draft completo e funcional. Publishable com revisao moderada (developmental editing + line editing). Nivel de maioria dos self-pub. Nao destaca mas atende expectativas."
+      7-8:
+        label: "Bom"
+        description: "Manuscrito forte. Polish e suficiente. Competitive no mercado. Agent-ready. Traditional publishing viable. Algumas dimensoes excellent compensam areas adequadas."
+      9-10:
+        label: "Excelente"
+        description: "Manuscrito excepcional. Minimal revision necessaria. Instant agent interest. Award potential. Destaca em todas ou quase todas as dimensoes. Publishable imediatamente."
+
+metadata:
+  version: "1.0.0"
+  agent: critic
+  created_for: book-studio v2.0.0
+  calibration_note: |
+    Esta rubrica serve como guia de calibracao. Critic Agent deve:
+    1. Ser consistente ao avaliar mesma dimensao entre capitulos
+    2. Considerar contexto do genero (worldbuilding irrelevante para contemporaneo, por ex)
+    3. Usar exemplos especificos ao justificar scores baixos (<7)
+    4. Ser honest mas construtivo em feedback
+    5. Threshold 7.0 = aprovacao porque representa "Bom" — competitivo no mercado

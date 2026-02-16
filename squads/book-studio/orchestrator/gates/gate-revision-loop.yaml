@@ -53,3 +53,8 @@ tracking:
     - critic_score
     - critic_feedback_summary
     - improvements_noted
+
+timeout:
+  per_iteration: 4h
+  total_loop: 12h
+  on_timeout: "Force exit com score atual. Flag para revisao manual."

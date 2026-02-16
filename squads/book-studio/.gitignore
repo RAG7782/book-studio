@@ -1,0 +1,7 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Temporary files
+*.tmp
+.DS_Store

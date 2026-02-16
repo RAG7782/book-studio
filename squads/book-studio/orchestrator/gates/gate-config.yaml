@@ -35,3 +35,17 @@ settings:
   require_author_approval: true  # author must approve at review gates
   auto_save_checkpoint: true
   log_gate_results: true
+  timeout:
+    review_approval: 24h
+    block_resolution: 48h
+    escalation_action: notify_author
+    escalation_message: "Gate pendente ha mais de {timeout}. Requer atencao."
+
+  # Pre-gate validation
+  # Valida handoffs antes de processar quality gates
+  pre_gate_validation:
+    enabled: true
+    validate_handoffs: true    # Valida handoff data contra schema
+    validate_book_state: true  # Valida book-state sections
+    script: "scripts/validate-handoff.js --validate-data"
+    on_failure: block          # block | warn | ignore
