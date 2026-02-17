@@ -83,6 +83,7 @@ components:
     - book-metadata.md
     - pipeline-report.md
     - pipeline-report-short.md
+    - handoff-output-template.md
   schemas:
     - entity-model.yaml
     - handoff-muse-to-architect.yaml
